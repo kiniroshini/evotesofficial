@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="chatbotrsvotes"
+  agent-id="91b70d7a-2d4c-4f07-b687-29f908704667"
+  language-code="en"
+  allow="microphone;"
+></df-messenger>
+    <style>
+        .btncom {
+            background-color: #878a87;
+            /* Green */
+            border: none;
+            border-radius: 10px 10px 10px 0px;
+            color: white;
+            font-family: sans-serif;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .btncom:hover {
+            transform: scale3d(0.9, 0.9, 0.9);
+            transition-duration: 2s;
+            background-color: rgb(51, 50, 50);
+            border: none;
+            color: #dde0dd;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+        }
+
+        header {
+            height: 100%
+        }
+
+        .rc {
+            font-family: 'Caveat', cursive;
+            padding-left: 5%;
+            opacity: 70%;
+
+        }
+
+        input[type=text] {
+            width: 270px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+            background-image: url('searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+            transition: width 0.4s ease-in-out;
+        }
+
+        input[type=text]:focus {
+            width: 90%;
+            border-color: #fcfafa;
+
+        }
+
+        .comcon {
+            padding-left: 5%;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            font-size: 1.125rem;
+            font-weight: 300;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .image-full {
+            max-height: 300px;
+            width: 100%;
+            object-fit: cover;
+            margin-bottom: 2em;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: serif;
+            font-weight: 400;
+            color: #143774;
+            margin-top: 0;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        h3 {
+            color: #1792d2;
+        }
+
+        .subtitle {
+            font-weight: 700;
+            color: #1792d2;
+            font-size: .75rem;
+            margin: 0;
+        }
+
+        .article-title {
+            font-size: 1.5rem;
+            padding-left: 5%;
+        }
+
+        .article-read-more,
+        .article-info {
+            font-size: .875rem;
+        }
+
+        .article-read-more {
+            color: #1792d2;
+            text-decoration: none;
+            font-weight: 700;
+            padding-left: 5%;
+            padding-right: 2%;
+        }
+
+        .article-read-more:hover,
+        .article-read-more:focus {
+            color: #143774;
+            text-decoration: underline;
+            transform: rotateX(360deg);
+            transition-duration: 2s;
+
+
+        }
+
+        .sidebar-widget {
+            animation-duration: 3s;
+            animation-name: slidein;
+        }
+
+        @keyframes slidein {
+            from {
+                margin-left: 100%;
+                width: 300%;
+            }
+
+            to {
+                margin-left: 0%;
+                width: 100%;
+            }
+        }
+
+        .article-info {
+            margin: 2em 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
+
+        }
+
+        .container-nav,
+        .container-flex {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header {
+            background: #f8f8f8;
+            text-align: center;
+            padding: 2em 0;
+            margin-bottom: 3em;
+        }
+
+        footer {
+            background: #143774;
+            color: white;
+            text-align: center;
+            padding: .5em 0;
+        }
+
+        .fa-heart {
+            color: red;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: red;
+        }
+
+        strong {
+            font-weight: 700;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        nav li {
+            margin: .5em 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #707070;
+            font-weight: 700;
+            margin: .25em 0;
+        }
+
+        nav a:hover,
+        nav a:focus {
+            color: #1792d2;
+        }
+
+        .dogg {
+            transform: scale3d(0, 0, 0);
+        }
+
+        .dogg:hover {
+            transform: scale3d(1.2, 1.2, 1.2);
+        }
+
+        a.current-page {
+            position: relative;
+            color: #143774;
+        }
+
+        a.current-page:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: rgb(27, 8, 8);
+            visibility: hidden;
+            transform: scaleX(0);
+            transition: all 0.3s ease-in-out;
+        }
+
+        a.current-page:hover:before {
+            visibility: visible;
+            transform: scaleX(1);
+
+        }
+
+        .article-featured {
+            border-bottom: #707070 1px solid;
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            color: darkgray;
+            border-radius: 2px 2px 2px 0px;
+            background-color: #fcfafa;
+            border-radius: 2%;
+        }
+
+        .article-featured:hover {
+
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            transition-duration: 1s;
+            color: black;
+            transform: scale3d(1.009, 1.009, 1.009);
+
+        }
+
+        .article-recent {
+            display: flex;
+            width: 70vw;
+            flex-direction: column;
+            margin-bottom: 2em;
+            border-bottom: #707070 1px solid;
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            color: darkgray;
+            border-radius: 2px 2px 2px 0px;
+            background-color: #fcfafa;
+            border-radius: 2%;
+        }
+
+        .article-recent:hover {
+
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            transition-duration: 1s;
+            color: black;
+            transform: scale3d(1.009, 1.009, 1.009);
+
+        }
+
+        .article-recent-main {
+            order: 2;
+            width: 100%;
+
+        }
+
+        .article-recent-secondary {
+            order: 1;
+        }
+
+        .sidebar-widget {
+            border: 10px solid #efefef;
+            margin-bottom: 2em;
+            padding: 1em;
+        }
+
+        .widget-body:hover {
+            transform: scale3d(1.2, 1.2, 1.2);
+            transition-duration: 1s;
+        }
+
+
+
+        .widget-recent-post-title {
+            font-size: 1rem;
+        }
+
+        .widget-recent-post {
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid #707070;
+            margin-bottom: 1em;
+        }
+
+        .widget-recent-post:last-child {
+            border: 0;
+            margin: 0;
+        }
+
+        .widget-image {
+            order: -1;
+            margin-bottom: .5em;
+        }
+
+        .article-body {
+            padding-left: 5%;
+            padding-right: 2%;
+            text-justify:auto;
+            text-align-last: justify;
+            border-left: 6px solid rgb(119, 116, 116);
+            background-color: #fcfafa;
+
+
+        }
+        .hoverTable{
+            width: 100%;
+            border-collapse: collapse;
+            margin-left: 2%;
+        }
+        .hoverTable tr:hover{
+            background-color: #fcecd0;
+        }
+        #parties {
+         margin-left: 2%;
+         margin-right: 2%;
+         border-collapse: collapse;
+         width: 96%;
+        }
+
+        #parties td,#parties th {
+           border: 2px solid rgb(255, 249, 249);
+           padding: 8px;
+        }
+        
+        #parties td:nth-child(even){background-color: #ffefd7;}
+
+        @media (min-width: 675px) {
+
+            .container-nav,
+            .container-flex {
+                flex-direction: row;
+            }
+
+            .container-nav {
+                align-items: center;
+            }
+
+            main {
+                width: 70%;
+            }
+
+            aside {
+                width: 25%;
+                min-width: 200px;
+                margin-left: 1em;
+            }
+
+            nav ul {
+                flex-direction: row;
+            }
+
+            nav li {
+                margin-left: 2em;
+            }
+
+
+            .article-recent {
+                flex-direction: row;
+                justify-content: space-between;
+
+            }
+
+            .article-recent-main {
+                width: 95%;
+                text-align: justify;
+            }
+
+            .article-recent-secondary {
+                width: 30%;
+            }
+
+            .article-title {
+                order: 99;
+            }
+
+            .article-image {
+                width: 100%;
+                min-height: 200px;
+                object-fit: cover;
+                border-radius: 2% 2% 0% 0%;
+            }
+
+
+            .article-featured {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .article-image {
+                order: -2;
+            }
+
+            .article-info {
+                order: -1;
+            }
+
+            .article-title {
+                order: 0;
+            }
+
+        }
+    .buttonsss{
+        width:20%;
+        padding:1%;
+        border-radius:0px 20px 20px 20px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  
+
+    }
+    .scrollable-menu {
+    height: auto;
+    max-height: 300px;
+    overflow-x: hidden;
+}
+    </style>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+    
+    <title>RSvotes | Chhattisgarh</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    </head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">RSvotes</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="aboutparties.html">About parties</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="vote.php">Vote Now!</a></li>
+                    </li>
+                        
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+
+    <header>
+        <div class="container container-nav">
+            <div class="site-title" style="text-align: center;">
+                <h1>Chhattisgarh Election</h1>
+                <p class="subtitle" ><h3>Results & Updates<h3</p>
+            </div>
+            
+            <nav>
+
+                <ul>
+                    <li><a href="aboutparties.html">National<br> Parties</a></li>
+                   <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false" class="current-page">
+                        State Parties
+                    </a>
+                    <ul class="dropdown-menu scrollable-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="andhrapradesh.html">Andhra Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="arunachalpradhesh.html">Arunachal Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="assam.html">Assam Election</a></li>
+                        <li><a class="dropdown-item" href="bihar.html">Bihar Election</a></li>
+                        <li><a class="dropdown-item" href="chhattisgarh.html">Chhattisgarh Election</a></li>
+                        <li><a class="dropdown-item" href="delhi.html">Delhi Election</a></li>
+                        <li><a class="dropdown-item" href="Goa.html">Goa Election</a></li>
+                        <li><a class="dropdown-item" href="gujarat.html">Gujarat Election</a></li>
+                        <li><a class="dropdown-item" href="haryana.html">Haryana Election</a></li>
+                        <li><a class="dropdown-item" href="himachal.html">Himachal Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="Jammu&kashmir.html">Jammu & Kashmir Election</a></li>
+                        <li><a class="dropdown-item" href="jharkhand.html">Jharkhand Election</a></li>
+                        <li><a class="dropdown-item" href="karnataka.html">Karnataka Election</a></li>
+                        <li><a class="dropdown-item" href="kerala.html">Kerala Election</a></li>
+                        <li><a class="dropdown-item" href="madhyapradesh.html">Madhya Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="maharashtra.html">Maharashtra Election</a></li>
+                        <li><a class="dropdown-item" href="manipur.html">Manipur Election</a></li>
+                        <li><a class="dropdown-item" href="meghalaya.html">Meghalaya Election</a></li>
+                        <li><a class="dropdown-item" href="mizoram.html">Mizoram Election</a></li>
+                        <li><a class="dropdown-item" href="nagaland.html">Nagaland Election</a></li>
+                        <li><a class="dropdown-item" href="orissa.html">Odisha Election</a></li>
+                        <li><a class="dropdown-item" href="punjab.html">Punjab Election</a></li>
+                        <li><a class="dropdown-item" href="rajasthan.html">Rajasthan Election</a></li>
+                        <li><a class="dropdown-item" href="sikkim.html">Sikkim Election</a></li>
+                        <li><a class="dropdown-item" href="tamilnadu.html">Tamil Nadu Election</a></li>
+                        <li><a class="dropdown-item" href="telangana.html">Telangana Election</a></li>
+                        <li><a class="dropdown-item" href="tripura.html">Tripura Election</a></li>
+                        <li><a class="dropdown-item" href="uttar pradesh.html">Uttar Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="uttarakhand.html">Uttarakhand Election</a></li>
+                        <li><a class="dropdown-item" href="west bengal.html">West Bengal Election</a></li>
+
+                    </ul>
+                </li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container container-flex">
+
+        <main role="main">
+            <article class="article-featured" id="p4">
+                <h2 class="article-title"><mark>Recognised Parties in Chhattisgarh </mark></h2>
+                
+             <p class="article-body"><i>
+                <table  id="parties">
+                    <tr>
+                        <th>Name:</th>
+                        <td><a href="https://en.wikipedia.org/wiki/Janta_Congress_Chhattisgarh" style="text-decoration: none; color: #f59241;">Janta Congress Chhattisgarh</a></td>
+                    </tr>
+
+                    </tr>
+                    <tr>
+                      <th>Abbrivation:</th>
+                      <td>JCC</td>
+                    </tr>
+                    <tr>
+                      <th>Foundation year:</th>
+                      <td>2016</td>
+                    </tr>
+                    <tr>
+                        <th>Current Leader(s):</th>
+                        <td><a href="https://en.wikipedia.org/wiki/Renu_Jogi" style="text-decoration: none; color: #f59241;">Renu Jogi</a></td>
+                    </tr>
+                    <tr>
+                        <th>Symbol:</th>
+                        <td><img src="data:image/jpeg;base64,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"></td>
+                    </tr>
+                    </table> 
+                  
+             </i></p></a>
+             
+                <p id="coml" class="rc"><i></i></p>
+            </article>
+
+        
+            <article class="article-featured">
+                <h2 class="article-title"><mark>About Chhattisgarh Elections</mark></h2>
+              <p class="article-body"><i>Chhattisgarh is a prominent Indian state with an important mark on the history of the country.
+                   The state has a government that runs the state to maintain law and order in the state. The government of Chhattisgarh
+                   also is responsible for the development of the country. The state government is selected through the assembly elections,
+                   where the political parties of the state provide their candidates for participating in the election for representations 
+                   of the 90 constituencies of the state. The election is organized periodically to select the ruling party of the state. 
+                   The chief minister of Chhattisgarh is selected through the general elections.
+                  The politics of Chhatisgarh is mainly a field for major national political parties like The Bharatiya Janata Party (BJP), 
+                  the Congress, and the Bahujan Samaj Party (BSP).  
+                  In present times, Congress has a majority in the legislative assembly while the last time, it was BJP. However, 
+                  both of them play an influential role in the state's politics. 
+            
+              </i></p>
+
+                <a href="https://www.elections.in/chhattisgarh/#info_id1" class="article-read-more">CONTINUE READING</a>
+                
+                <p id="coml" class="rc"><i></i></p>
+            </article>
+             <!-- Facts table-->
+            <article class="article-featured" id="p1">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark>Quick facts for Chhattisgarh Elections</mark></h2>
+            
+                <a href="#" style="text-decoration: none;  color: rgb(80, 79, 79);"> <p class="article-body">
+                <table class="hoverTable" style="text-align:left;">
+                    <tr>
+                      <td width="330">Parliamentary Constituencies</td>
+                      <td>11</td>
+                    </tr>
+                    <tr>
+                      <td>Assembly Constituencies</td>
+                      <td>90 </td>
+                    </tr>
+                    <tr>
+                      <td>Ruling Party</td>
+                      <td>Indian National Congress</td>
+                    </tr>
+                    <tr>
+                      <td>Opposition Party</td>
+                      <td>Bharatiya Janata Party</td>
+                    </tr>
+                    <tr>
+                        <td>Cheif Minister</td>
+                        <td>Bhupesh Baghel</td>
+                    </tr>
+                    <tr>
+                        <td>Opposition Leader</td>
+                        <td>Dharamlal Kaushik</td>
+                    </tr>
+                    <tr>
+                        <td>Governor</td>
+                        <td>Anusuiya Uikey</td>
+                    </tr>
+                    <tr>
+                        <td>Chief Electoral Officer</td>
+                        <td>Reena Baba Saheb Kangale,IAS</td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>Shastri Chowk,Old Mantralaya Premises Raipur, Chhattisgarh</td>
+                    </tr>
+            
+                  </table></p></a>
+                </div>  
+            </article>
+
+
+            <article class="article-featured" id="p2">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark>Chhattisgarh Legislative Assembly (Vidhan Sabha) Elections 2018 Summary</mark></h2>
+                    <p class="article-body"><i>
+                     The 2018 Chhattisgarh Legislative Assembly election was held to elect members to the Legislative
+                     Assembly of the Indian State of Chhattisgarh. The election was held in two phases for a total of 
+                     90 seats; the first for 18 seats in South Chhattisgarh was held on 12 November 2018, and the second
+                    for the remaining 72 were held on 20 November.The INC got a landslide victory winning 72 seats against 
+                    the ruling BJP's 15 seats, and consequently formed the government after 15 years as opposition party.
+                    Incumbent Chief Minister Raman Singh resigned on 11 December, the day of counting and declaration of result, 
+                    taking the responsibility for the defeat.Elected to the Assembly from Patan, INC leader Bhupesh Baghel 
+                    took office on 17 December as the third Chief Minister of the State.
+                    </i></p>
+                    <a href="https://en.wikipedia.org/wiki/2018_Chhattisgarh_Legislative_Assembly_election"
+                        class="article-read-more">CONTINUE READING</a>
+                </div>
+
+            </article>
+
+            <article class="article-featured" id="p3">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark>Chhattisgarh Lok Sabha Election 2019 Summary</mark></h2>
+                    <p class="article-body"><i>
+                        The 2019 Indian general elections held in India between 11 April and 23 April 2019 to constitute the 17th Lok Sabha.
+                        The BJP secured 9 seats, while Congress has taken 2.10 out of 11seats are won by BJP, and only one seat has been won
+                        by Congress in the 2014 polls. The state of Chattisgarh was formed in 2000 after a separation from Madhya Pradesh. 
+                        The state of Chattisgarh has 11 parliamentary constituencies including four seats which are reserved for Scheduled 
+                        Tribes and two reserved for Scheduled Castes. The present government of Chattisgarh runs under the Bharatiya Janata Party's
+                        (BJP) rule and is headed by its Chief Minister Raman Singh. Besides the ruling party, BJP, Indian National Congress (INC)
+                        and Bahujan Samaj party (BSP) are the strong parties in the state. The polling in Chattisgarh for 16th Lok Sabha elections 
+                        took place in three different phases and political leaders like Kamleshwar Verma from Congress,
+                         former CM Ajit Jogi and Abhishek, son of present CM Raman Singh were in fray.
+                    </i></p>
+                    <a href="https://en.wikipedia.org/wiki/2019_Indian_general_election_in_Chhattisgarh" class="article-read-more">CONTINUE READING</a>
+                </div>
+            </article>
+
+        </main>
+
+        <aside class="sidebar">
+
+            <div class="sidebar-widget">
+                <h2 class="widget-title">About Chhattisgarh</h2>
+                <img src="https://1.bp.blogspot.com/-56ExlUt39us/TqzeCMhGeeI/AAAAAAAAAhQ/AfJFcY_zRl0/s1600/Chhattisgarh-Map1.jpg" alt="" class="widget-image">
+                <p class="widget-body rc"><p>Chhattisgarh is a state located in the region of Central India. Formerly part of Madhya Pradesh, it was granted statehood on November 1, 2000.
+
+                    <b>Area:</b>135,192 km²<br>
+                    <b>Capital:</b>Raipur<br>
+                    <b>Chief minister:</b> Anusuiya Uikey<br>
+                    <b>Governor:</b> Bhupesh Baghel<br>
+                    <b>Population:</b>2.94 crores (2020)
+
+
+            </div>
+            <!--GO TO CONTANIER-->
+            <div class="sidebar-widget">
+                <h2 class="widget-title">Go to...</h2>
+                <div class="widget-recent-post">
+                    <a href="#p4" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Recognised Parties in Chhattisgarh </h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="#p1" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Quick facts for Chhattisgarh Elections</h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="#p2" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Chhattisgarh Legislative Assembly (Vidhan Sabha) Elections 2018 Summary</h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="#p3" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Chhattisgarh Lok Sabha Election 2019 Summary</h3>
+                    </a>
+                </div>
+
+            </div>
+            <!--Third aside-->
+            <div class="sidebar-widget">
+                <h2 class="widget-title">2018 Chhattisgarh Legislative Assembly Elections</h2>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Chhattisgarh_Legislative_Assembly_election_2018.png/300px-Chhattisgarh_Legislative_Assembly_election_2018.png" alt="" class="widget-image">    
+            </div>
+            
+            <!--another container-->
+            <div class="sidebar-widget"><a href="https://www.elections.in/chhattisgarh/parliamentary-constituencies/" style="text-decoration: none; color: rgb(16, 33, 90);">
+                <h2 class="widget-title">Parliament</h2></a>
+
+                <div class="widget-recent-post">
+                    <a href="https://www.elections.in/chhattisgarh/parliamentary-constituencies/bilaspur.html" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Bilaspur</h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="https://www.elections.in/chhattisgarh/parliamentary-constituencies/durg.html" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Durg</h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="https://www.elections.in/chhattisgarh/parliamentary-constituencies/janjgir-champa.html" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Janjgir Champa</h3>
+                    </a>
+                </div>
+                <div class="widget-recent-post">
+                    <a href="https://www.elections.in/chhattisgarh/parliamentary-constituencies/kanker.html" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Kanker</h3>
+                    </a>
+                </div>
+            </div>
+        </aside>
+    </div>
+    <script>
+        function myFunction() {
+            var person = prompt("Comment as", "Roshini Chavan");
+            if (person != null) {
+                var com = document.getElementById("myText").value;
+                var today = new Date();
+                document.getElementById("coml").innerHTML = "<b>" + "Comment posted: <br>" + person + "</b>" + " " + com + "<br>" + "<div class='rc article-body' style='opacity:50%; border:none;padding-left:3%'>" + today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + ',' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds(); "</div>";
+
+                var com = document.getElementById("just").innerHTML = ""
+                document.getElementById("num").innerHTML = "4";
+
+            }
+        }
+    </script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=4ewHTtLY"></script>
+</body>
+
+</html>

@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="chatbotrsvotes"
+  agent-id="91b70d7a-2d4c-4f07-b687-29f908704667"
+  language-code="en"
+  allow="microphone;"
+></df-messenger>
+    <style>
+        .btncom {
+            background-color: #878a87;
+            /* Green */
+            border: none;
+            border-radius: 10px 10px 10px 0px;
+            color: white;
+            font-family: sans-serif;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .btncom:hover {
+            transform: scale3d(0.9, 0.9, 0.9);
+            transition-duration: 2s;
+            background-color: rgb(51, 50, 50);
+            border: none;
+            color: #dde0dd;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+        }
+
+        header {
+            height: 100%
+        }
+
+        .rc {
+            font-family: 'Caveat', cursive;
+            padding-left: 5%;
+            opacity: 70%;
+
+        }
+
+        input[type=text] {
+            width: 270px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+            background-image: url('searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+            transition: width 0.4s ease-in-out;
+        }
+
+        input[type=text]:focus {
+            width: 90%;
+            border-color: #fcfafa;
+
+        }
+
+        .comcon {
+            padding-left: 5%;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            font-size: 1.125rem;
+            font-weight: 300;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .image-full {
+            max-height: 300px;
+            width: 100%;
+            object-fit: cover;
+            margin-bottom: 2em;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: serif;
+            font-weight: 400;
+            color: #143774;
+            margin-top: 0;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        h3 {
+            color: #1792d2;
+        }
+
+        .subtitle {
+            font-weight: 700;
+            color: #1792d2;
+            font-size: .75rem;
+            margin: 0;
+        }
+
+        .article-title {
+            font-size: 1.5rem;
+            padding-left: 5%;
+        }
+
+        .article-read-more,
+        .article-info {
+            font-size: .875rem;
+        }
+
+        .article-read-more {
+            color: #1792d2;
+            text-decoration: none;
+            font-weight: 700;
+            padding-left: 5%;
+            padding-right: 2%;
+        }
+
+        .article-read-more:hover,
+        .article-read-more:focus {
+            color: #143774;
+            text-decoration: underline;
+            transform: rotateX(360deg);
+            transition-duration: 2s;
+
+
+        }
+
+        .sidebar-widget {
+            animation-duration: 3s;
+            animation-name: slidein;
+        }
+
+        @keyframes slidein {
+            from {
+                margin-left: 100%;
+                width: 300%;
+            }
+
+            to {
+                margin-left: 0%;
+                width: 100%;
+            }
+        }
+
+        .article-info {
+            margin: 2em 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
+
+        }
+
+        .container-nav,
+        .container-flex {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header {
+            background: #f8f8f8;
+            text-align: center;
+            padding: 2em 0;
+            margin-bottom: 3em;
+        }
+
+        footer {
+            background: #143774;
+            color: white;
+            text-align: center;
+            padding: .5em 0;
+        }
+
+        .fa-heart {
+            color: red;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: red;
+        }
+
+        strong {
+            font-weight: 700;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        nav li {
+            margin: .5em 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #707070;
+            font-weight: 700;
+            margin: .25em 0;
+        }
+
+        nav a:hover,
+        nav a:focus {
+            color: #1792d2;
+        }
+
+        .dogg {
+            transform: scale3d(0, 0, 0);
+        }
+
+        .dogg:hover {
+            transform: scale3d(1.2, 1.2, 1.2);
+        }
+
+        a.current-page {
+            position: relative;
+            color: #143774;
+        }
+
+        a.current-page:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: rgb(27, 8, 8);
+            visibility: hidden;
+            transform: scaleX(0);
+            transition: all 0.3s ease-in-out;
+        }
+
+        a.current-page:hover:before {
+            visibility: visible;
+            transform: scaleX(1);
+
+        }
+
+        .article-featured {
+            border-bottom: #707070 1px solid;
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            color: darkgray;
+            border-radius: 2px 2px 2px 0px;
+            background-color: #fcfafa;
+            border-radius: 2%;
+        }
+
+        .article-featured:hover {
+
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            transition-duration: 1s;
+            color: black;
+            transform: scale3d(1.009, 1.009, 1.009);
+
+        }
+
+        .article-recent {
+            display: flex;
+            width: 70vw;
+            flex-direction: column;
+            margin-bottom: 2em;
+            border-bottom: #707070 1px solid;
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            color: darkgray;
+            border-radius: 2px 2px 2px 0px;
+            background-color: #fcfafa;
+            border-radius: 2%;
+        }
+
+        .article-recent:hover {
+
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            transition-duration: 1s;
+            color: black;
+            transform: scale3d(1.009, 1.009, 1.009);
+
+        }
+
+        .article-recent-main {
+            order: 2;
+            width: 100%;
+
+        }
+
+        .article-recent-secondary {
+            order: 1;
+        }
+
+        .sidebar-widget {
+            border: 10px solid #efefef;
+            margin-bottom: 2em;
+            padding: 1em;
+        }
+
+        .widget-body:hover {
+            transform: scale3d(1.2, 1.2, 1.2);
+            transition-duration: 1s;
+        }
+
+
+
+        .widget-recent-post-title {
+            font-size: 1rem;
+        }
+
+        .widget-recent-post {
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid #707070;
+            margin-bottom: 1em;
+        }
+
+        .widget-recent-post:last-child {
+            border: 0;
+            margin: 0;
+        }
+
+        .widget-image {
+            order: -1;
+            margin-bottom: .5em;
+        }
+
+        .article-body {
+            padding-left: 5%;
+            padding-right: 2%;
+            text-justify:auto;
+            text-align-last: justify;
+            border-left: 6px solid rgb(119, 116, 116);
+            background-color: #fcfafa;
+
+
+        }
+        .hoverTable{
+            width: 100%;
+            border-collapse: collapse;
+            margin-left: 2%;
+        }
+        .hoverTable tr:hover{
+            background-color: #fcecd0;
+        }
+        #parties {
+         margin-left: 2%;
+         margin-right: 2%;
+         border-collapse: collapse;
+         width: 96%;
+        }
+
+        #parties td,#parties th {
+           border: 2px solid rgb(255, 249, 249);
+           padding: 8px;
+        }
+        
+        #parties td:nth-child(even){background-color: #ffefd7;}
+
+        @media (min-width: 675px) {
+
+            .container-nav,
+            .container-flex {
+                flex-direction: row;
+            }
+
+            .container-nav {
+                align-items: center;
+            }
+
+            main {
+                width: 70%;
+            }
+
+            aside {
+                width: 25%;
+                min-width: 200px;
+                margin-left: 1em;
+            }
+
+            nav ul {
+                flex-direction: row;
+            }
+
+            nav li {
+                margin-left: 2em;
+            }
+
+
+            .article-recent {
+                flex-direction: row;
+                justify-content: space-between;
+
+            }
+
+            .article-recent-main {
+                width: 95%;
+                text-align: justify;
+            }
+
+            .article-recent-secondary {
+                width: 30%;
+            }
+
+            .article-title {
+                order: 99;
+            }
+
+            .article-image {
+                width: 100%;
+                min-height: 200px;
+                object-fit: cover;
+                border-radius: 2% 2% 0% 0%;
+            }
+
+
+            .article-featured {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .article-image {
+                order: -2;
+            }
+
+            .article-info {
+                order: -1;
+            }
+
+            .article-title {
+                order: 0;
+            }
+
+        }
+    .buttonsss{
+        width:20%;
+        padding:1%;
+        border-radius:0px 20px 20px 20px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  
+
+    }
+    .scrollable-menu {
+    height: auto;
+    max-height: 300px;
+    overflow-x: hidden;
+}
+    </style>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+    
+    <title>RSvotes | Telangana</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    </head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">RSvotes</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="aboutparties.html">About parties</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="vote.php">Vote Now!</a></li>
+                    </li>
+                        
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+
+    <header>
+        <div class="container container-nav">
+            <div class="site-title" style="text-align: center;">
+                <h1>Telangana Election</h1>
+                <p class="subtitle" ><h3>Results & Updates<h3</p>
+            </div>
+            
+            <nav>
+
+                <ul>
+                    <li><a href="aboutparties.html">National<br> Parties</a></li>
+                   <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false" class="current-page">
+                        State Parties
+                    </a>
+                    <ul class="dropdown-menu scrollable-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="andhrapradesh.html">Andhra Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="arunachalpradhesh.html">Arunachal Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="assam.html">Assam Election</a></li>
+                        <li><a class="dropdown-item" href="bihar.html">Bihar Election</a></li>
+                        <li><a class="dropdown-item" href="chhattisgarh.html">Chhattisgarh Election</a></li>
+                        <li><a class="dropdown-item" href="delhi.html">Delhi Election</a></li>
+                        <li><a class="dropdown-item" href="Goa.html">Goa Election</a></li>
+                        <li><a class="dropdown-item" href="gujarat.html">Gujarat Election</a></li>
+                        <li><a class="dropdown-item" href="haryana.html">Haryana Election</a></li>
+                        <li><a class="dropdown-item" href="himachal.html">Himachal Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="jharkhand.html">Jharkhand Election</a></li>
+                        <li><a class="dropdown-item" href="karnataka.html">Karnataka Election</a></li>
+                        <li><a class="dropdown-item" href="kerala.html">Kerala Election</a></li>
+                        <li><a class="dropdown-item" href="madhyapradesh.html">Madhya Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="maharashtra.html">Maharashtra Election</a></li>
+                        <li><a class="dropdown-item" href="manipur.html">Manipur Election</a></li>
+                        <li><a class="dropdown-item" href="meghalaya.html">Meghalaya Election</a></li>
+                        <li><a class="dropdown-item" href="mizoram.html">Mizoram Election</a></li>
+                        <li><a class="dropdown-item" href="nagaland.html">Nagaland Election</a></li>
+                        <li><a class="dropdown-item" href="orissa.html">Odisha Election</a></li>
+                        <li><a class="dropdown-item" href="punjab.html">Punjab Election</a></li>
+                        <li><a class="dropdown-item" href="rajasthan.html">Rajasthan Election</a></li>
+                        <li><a class="dropdown-item" href="sikkim.html">Sikkim Election</a></li>
+                        <li><a class="dropdown-item" href="tamilnadu.html">Tamil Nadu Election</a></li>
+                        <li><a class="dropdown-item" href="telangana.html">Telangana Election</a></li>
+                        <li><a class="dropdown-item" href="tripura.html">Tripura Election</a></li>
+                        <li><a class="dropdown-item" href="uttar pradesh.html">Uttar Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="uttarakhand.html">Uttarakhand Election</a></li>
+                        <li><a class="dropdown-item" href="west bengal.html">West Bengal Election</a></li>
+                    </ul>
+                </li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container container-flex">
+
+        <main role="main">
+            <article class="article-featured" id="p4">
+                <h2 class="article-title"><mark>Recognised Parties in Telangana</mark></h2>
+                
+             <p class="article-body"><i>
+                <table  id="parties">
+                    <tr>
+                        <th>Name:</th>
+                        <td><a href="https://en.wikipedia.org/wiki/Telugu_Desam_Party" style="text-decoration: none; color: #f59241;">Telugu Desam Party</a></td>
+                        <td><a href="https://en.wikipedia.org/wiki/All_India_Majlis-e-Ittehadul_Muslimeen" style="text-decoration: none; color: #f59241;">All India Majlis-e-Ittehadul Muslimeen</a></td>
+                        <td><a href="https://en.wikipedia.org/wiki/Telangana_Rashtra_Samithi" style="text-decoration: none; color: #f59241;">Telangana Rashtra Samithi</a></td>
+                    </tr>
+
+                    </tr>
+                    <tr>
+                      <th>Abbrivation:</th>
+                      <td>TDP</td>
+                      <td>AI MIM</td>
+                      <td>TRS</td>
+                    </tr>
+                    <tr>
+                      <th>Foundation year:</th>
+                      <td>1982</td>
+                      <td>1927</td>
+                      <td>2001</td>
+                    </tr>
+                    <tr>
+                        <th>Current Leader(s):</th>
+                        <td><a href="https://en.wikipedia.org/wiki/N._Chandrababu_Naidu" style="text-decoration: none; color: #f59241;">N. Chandrababu Naidu</a></td>
+                        <td><a href="https://en.wikipedia.org/wiki/Asaduddin_Owaisi" style="text-decoration: none; color: #f59241;">Asaduddin Owaisi</a></td>
+                        <td><a href="https://en.wikipedia.org/wiki/K._Chandrashekar_Rao" style="text-decoration: none; color: #f59241;">K. Chandrashekar Rao</a></td>
+                    </tr>
+                    <tr>
+                        <th>Symbol:</th>
+                        <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Indian_Election_Symbol_Cycle.png/150px-Indian_Election_Symbol_Cycle.png"></td>
+                        <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Indian_Election_Symbol_Kite.svg/150px-Indian_Election_Symbol_Kite.svg.png"></td>
+                        <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Telangana_Rashtra_Samithi_symbol.svg/150px-Telangana_Rashtra_Samithi_symbol.svg.png"></td>
+                    </tr>
+                    
+                  </table> 
+                  
+             </i></p></a>
+             
+                <p id="coml" class="rc"><i></i></p>
+            </article>
+
+        
+            <article class="article-featured">
+                <h2 class="article-title"><mark>About Telangana Elections</mark></h2>
+              <p class="article-body"><i>
+                Telangana 
+                has been made the 29th state of India and will come into existence on 2nd June, 2014. Andhra Pradesh and Telangana will share 
+                Hyderabad as its capital for next 10 years. Several movements have occurred to put an end to the merger of Andhra Pradesh 
+                and Telangana since the inception of Andhra in 1953. Though, the major movements were held in 1969, 1972 and 2009. 
+                The people from the region of Telangana have been demanding a separate state since 1953. It was after five decades that 
+                a mass movement took place in India for formation of a separate state. The movement turned violent which resulted in 
+                violent protests along with strikes, suicides and disruption in public life. In 2009, the Indian government initiated 
+                the process for formation of a separate Telangana state. After various ups and downs within the government and the opposition 
+                regarding the bifurcation of Telangana state, a bill was passed in February 2014 for the formation of the separate state. 
+                An official declaration was made by the government on 1 March 2014 that a separate state of Telangana will come into existence 
+                on 2 June 2014 and it will be considered as the 29th state of India. Telangana and Andhra were also divided on the basis of 
+                Parliamentary and assembly constituency. After the formation, Telangana will get 17 Lok Sabha and 119 assembly constituencies. 
+        
+
+              </i></p></a>
+
+                <a href="https://www.elections.in/telangana/" class="article-read-more">CONTINUE READING</a>
+                
+                <p id="coml" class="rc"><i></i></p>
+            </article>
+             <!-- Facts table-->
+            <article class="article-featured" id="p1">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark>Quick facts for Telangana Elections</mark></h2>
+            
+                <a href="#" style="text-decoration: none;  color: rgb(80, 79, 79);"> <p class="article-body">
+                <table class="hoverTable" style="text-align:left;">
+                    <tr>
+                      <td width="330">Parliamentary Constituencies</td>
+                      <td>17</td>
+                    </tr>
+                    <tr>
+                      <td>Assembly Constituencies</td>
+                      <td>119</td>
+                    </tr>
+                    <tr>
+                      <td>Ruling Party</td>
+                      <td>TRS</td>
+                    </tr>
+                    <tr>
+                      <td>Opposition Party</td>
+                      <td>BJP and TDP Alliance</td>
+                    </tr>
+                    <tr>
+                        <td>Cheif Minister</td>
+                        <td>Kalvakuntla Chandrashekar Rao</td>
+                    </tr>
+                    <tr>
+                        <td>Governor</td>
+                        <td>Tamilisai Soundararajan</td>
+                    </tr>
+                    
+                  </table></p></a>
+                </div>  
+            </article>
+
+
+            <article class="article-featured" id="p2">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark>Telangana Legislative Assembly (Vidhan Sabha) Elections 2018 Summary</mark></h2>
+                    <p class="article-body"><i>
+                        The Telangana Legislative Assembly election was held in Telangana on 7 December 2018 to constitute the second Legislative Assembly 
+                        since the formation of the state in 2014. The incumbent Telangana Rashtra Samithi, the Indian National Congress, Telangana Jana Samithi,
+                         and Telugu Desam Party were the main contestants in the election. Four opposition parties in the state, the INC, the TJS, the TDP and 
+                         the CPI announced the formation of a 'Maha Kootami' (Grand Alliance), to defeat the ruling TRS in the elections. 
+                        However, the Maha Kootami could not win a majority; the TRS won and formed the government once again 
+                    </i></p>
+                    <a href="https://en.wikipedia.org/wiki/2018_Telangana_Legislative_Assembly_election"
+                        class="article-read-more">CONTINUE READING</a>
+                </div>
+
+            </article>
+
+            <article class="article-featured" id="p3">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark>Telangana Lok Sabha Election 2019 Summary</mark></h2>
+                    <p class="article-body"><i>
+                        The 2019 Indian general election were held in India on 11 April 2019 to constitute the 17th Lok Sabha.
+
+                    </i></p>
+                    <a href="https://en.wikipedia.org/wiki/2019_Indian_general_election_in_Telangana#Results" class="article-read-more">CONTINUE READING</a>
+                </div>
+            </article>
+
+        </main>
+
+        <aside class="sidebar">
+
+            <div class="sidebar-widget">
+                <h2 class="widget-title">About Telangana</h2>
+                <img src="data:image/jpeg;base64,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" alt="" class="widget-image">
+                <p class="widget-body rc"><p>
+                    Telangana is bordered by the states of Maharashtra to the north, Chhattisgarh to the northeast, Karnataka to the west, and Andhra Pradesh to the east and south.<br>
+                    <b>Area:</b> 112,077 km²<br>
+                    <b>Capital:</b> Hyderabad<br>
+                    <b>Chief minister:</b> K. Chandrashekar Rao<br>
+                    <b>Population:</b> 3.52 crores (1 Mar 2011)
+
+
+            </div>
+            <!--GO TO CONTANIER-->
+            <div class="sidebar-widget">
+                <h2 class="widget-title">Go to...</h2>
+                <div class="widget-recent-post">
+                    <a href="#p4" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Recognised Parties in Telangana</h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="#p1" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Quick facts for Telangana Elections</h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="#p2" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Telangana Legislative Assembly (Vidhan Sabha) Elections 2018 Summary</h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="#p3" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Telangana Lok Sabha Election 2019 Summary</h3>
+                    </a>
+                </div>
+
+            </div>
+            <!--Third aside-->
+            <div class="sidebar-widget">
+                <h2 class="widget-title">2018 Telangana Legislative Assembly Elections</h2>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/2018_Telangana_assembly_election.png/500px-2018_Telangana_assembly_election.png" alt="" class="widget-image">    
+            </div>
+                  
+        </aside>
+    </div>
+    <script>
+        function myFunction() {
+            var person = prompt("Comment as", "Roshini Chavan");
+            if (person != null) {
+                var com = document.getElementById("myText").value;
+                var today = new Date();
+                document.getElementById("coml").innerHTML = "<b>" + "Comment posted: <br>" + person + "</b>" + " " + com + "<br>" + "<div class='rc article-body' style='opacity:50%; border:none;padding-left:3%'>" + today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + ',' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds(); "</div>";
+
+                var com = document.getElementById("just").innerHTML = ""
+                document.getElementById("num").innerHTML = "4";
+
+            }
+        }
+    </script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=4ewHTtLY"></script>
+</body>
+
+</html>

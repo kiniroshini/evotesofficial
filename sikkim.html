@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html>        
+<head>
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="chatbotrsvotes"
+  agent-id="91b70d7a-2d4c-4f07-b687-29f908704667"
+  language-code="en"
+  allow="microphone;"
+></df-messenger>
+    <style>
+        .btncom {
+            background-color: #878a87;
+            /* Green */
+            border: none;
+            border-radius: 10px 10px 10px 0px;
+            color: white;
+            font-family: sans-serif;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .btncom:hover {
+            transform: scale3d(0.9, 0.9, 0.9);
+            transition-duration: 2s;
+            background-color: rgb(51, 50, 50);
+            border: none;
+            color: #dde0dd;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+        }
+
+        header {
+            height: 100%
+        }
+
+        .rc {
+            font-family: 'Caveat', cursive;
+            padding-left: 5%;
+            opacity: 70%;
+
+        }
+
+        input[type=text] {
+            width: 270px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+            background-image: url('searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+            transition: width 0.4s ease-in-out;
+        }
+
+        input[type=text]:focus {
+            width: 90%;
+            border-color: #fcfafa;
+
+        }
+
+        .comcon {
+            padding-left: 5%;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            font-size: 1.125rem;
+            font-weight: 300;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .image-full {
+            max-height: 300px;
+            width: 100%;
+            object-fit: cover;
+            margin-bottom: 2em;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: serif;
+            font-weight: 400;
+            color: #143774;
+            margin-top: 0;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        h3 {
+            color: #1792d2;
+        }
+
+        .subtitle {
+            font-weight: 700;
+            color: #1792d2;
+            font-size: .75rem;
+            margin: 0;
+        }
+
+        .article-title {
+            font-size: 1.5rem;
+            padding-left: 5%;
+        }
+
+        .article-read-more,
+        .article-info {
+            font-size: .875rem;
+        }
+
+        .article-read-more {
+            color: #1792d2;
+            text-decoration: none;
+            font-weight: 700;
+            padding-left: 5%;
+            padding-right: 2%;
+        }
+
+        .article-read-more:hover,
+        .article-read-more:focus {
+            color: #143774;
+            text-decoration: underline;
+            transform: rotateX(360deg);
+            transition-duration: 2s;
+
+
+        }
+
+        .sidebar-widget {
+            animation-duration: 3s;
+            animation-name: slidein;
+        }
+
+        @keyframes slidein {
+            from {
+                margin-left: 100%;
+                width: 300%;
+            }
+
+            to {
+                margin-left: 0%;
+                width: 100%;
+            }
+        }
+
+        .article-info {
+            margin: 2em 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
+
+        }
+
+        .container-nav,
+        .container-flex {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header {
+            background: #f8f8f8;
+            text-align: center;
+            padding: 2em 0;
+            margin-bottom: 3em;
+        }
+
+        footer {
+            background: #143774;
+            color: white;
+            text-align: center;
+            padding: .5em 0;
+        }
+
+        .fa-heart {
+            color: red;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: red;
+        }
+
+        strong {
+            font-weight: 700;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        nav li {
+            margin: .5em 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #707070;
+            font-weight: 700;
+            margin: .25em 0;
+        }
+
+        nav a:hover,
+        nav a:focus {
+            color: #1792d2;
+        }
+
+        .dogg {
+            transform: scale3d(0, 0, 0);
+        }
+
+        .dogg:hover {
+            transform: scale3d(1.2, 1.2, 1.2);
+        }
+
+        a.current-page {
+            position: relative;
+            color: #143774;
+        }
+
+        a.current-page:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: rgb(27, 8, 8);
+            visibility: hidden;
+            transform: scaleX(0);
+            transition: all 0.3s ease-in-out;
+        }
+
+        a.current-page:hover:before {
+            visibility: visible;
+            transform: scaleX(1);
+
+        }
+
+        .article-featured {
+            border-bottom: #707070 1px solid;
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            color: darkgray;
+            border-radius: 2px 2px 2px 0px;
+            background-color: #fcfafa;
+            border-radius: 2%;
+        }
+
+        .article-featured:hover {
+
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            transition-duration: 1s;
+            color: black;
+            transform: scale3d(1.009, 1.009, 1.009);
+
+        }
+
+        .article-recent {
+            display: flex;
+            width: 70vw;
+            flex-direction: column;
+            margin-bottom: 2em;
+            border-bottom: #707070 1px solid;
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            color: darkgray;
+            border-radius: 2px 2px 2px 0px;
+            background-color: #fcfafa;
+            border-radius: 2%;
+        }
+
+        .article-recent:hover {
+
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            transition-duration: 1s;
+            color: black;
+            transform: scale3d(1.009, 1.009, 1.009);
+
+        }
+
+        .article-recent-main {
+            order: 2;
+            width: 100%;
+
+        }
+
+        .article-recent-secondary {
+            order: 1;
+        }
+
+        .sidebar-widget {
+            border: 10px solid #efefef;
+            margin-bottom: 2em;
+            padding: 1em;
+        }
+
+        .widget-body:hover {
+            transform: scale3d(1.2, 1.2, 1.2);
+            transition-duration: 1s;
+        }
+
+
+
+        .widget-recent-post-title {
+            font-size: 1rem;
+        }
+
+        .widget-recent-post {
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid #707070;
+            margin-bottom: 1em;
+        }
+
+        .widget-recent-post:last-child {
+            border: 0;
+            margin: 0;
+        }
+
+        .widget-image {
+            order: -1;
+            margin-bottom: .5em;
+        }
+
+        .article-body {
+            padding-left: 5%;
+            padding-right: 2%;
+            text-justify:auto;
+            text-align-last: justify;
+            border-left: 6px solid rgb(119, 116, 116);
+            background-color: #fcfafa;
+
+
+        }
+        .hoverTable{
+            width: 100%;
+            border-collapse: collapse;
+            margin-left: 2%;
+        }
+        .hoverTable tr:hover{
+            background-color: #fcecd0;
+        }
+        #parties {
+         margin-left: 2%;
+         margin-right: 2%;
+         border-collapse: collapse;
+         width: 96%;
+        }
+
+        #parties td,#parties th {
+           border: 2px solid rgb(255, 249, 249);
+           padding: 8px;
+        }
+        
+        #parties td:nth-child(even){background-color: #ffefd7;}
+
+        @media (min-width: 675px) {
+
+            .container-nav,
+            .container-flex {
+                flex-direction: row;
+            }
+
+            .container-nav {
+                align-items: center;
+            }
+
+            main {
+                width: 70%;
+            }
+
+            aside {
+                width: 25%;
+                min-width: 200px;
+                margin-left: 1em;
+            }
+
+            nav ul {
+                flex-direction: row;
+            }
+
+            nav li {
+                margin-left: 2em;
+            }
+
+
+            .article-recent {
+                flex-direction: row;
+                justify-content: space-between;
+
+            }
+
+            .article-recent-main {
+                width: 95%;
+                text-align: justify;
+            }
+
+            .article-recent-secondary {
+                width: 30%;
+            }
+
+            .article-title {
+                order: 99;
+            }
+
+            .article-image {
+                width: 100%;
+                min-height: 200px;
+                object-fit: cover;
+                border-radius: 2% 2% 0% 0%;
+            }
+
+
+            .article-featured {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .article-image {
+                order: -2;
+            }
+
+            .article-info {
+                order: -1;
+            }
+
+            .article-title {
+                order: 0;
+            }
+
+        }
+    .buttonsss{
+        width:20%;
+        padding:1%;
+        border-radius:0px 20px 20px 20px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  
+
+    }
+    .scrollable-menu {
+    height: auto;
+    max-height: 300px;
+    overflow-x: hidden;
+}
+    </style>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+    
+    <title>RSvotes | Sikkim </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    </head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">RSvotes</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="aboutparties.html">About parties</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="vote.php">Vote Now!</a></li>
+                    </li>
+                        
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+
+    <header>
+        <div class="container container-nav">
+            <div class="site-title" style="text-align: center;">
+                <h1>Sikkim Election</h1>
+                <p class="subtitle" ><h3>Results & Updates<h3</p>
+            </div>
+            
+            <nav>
+
+                <ul>
+                    <li><a href="aboutparties.html">National<br> Parties</a></li>
+                   <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false" class="current-page">
+                        State Parties
+                    </a>
+                    <ul class="dropdown-menu scrollable-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="andhrapradesh.html">Andhra Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="arunachalpradhesh.html">Arunachal Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="assam.html">Assam Election</a></li>
+                        <li><a class="dropdown-item" href="bihar.html">Bihar Election</a></li>
+                        <li><a class="dropdown-item" href="chhattisgarh.html">Chhattisgarh Election</a></li>
+                        <li><a class="dropdown-item" href="delhi.html">Delhi Election</a></li>
+                        <li><a class="dropdown-item" href="Goa.html">Goa Election</a></li>
+                        <li><a class="dropdown-item" href="gujarat.html">Gujarat Election</a></li>
+                        <li><a class="dropdown-item" href="haryana.html">Haryana Election</a></li>
+                        <li><a class="dropdown-item" href="himachal.html">Himachal Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="jharkhand.html">Jharkhand Election</a></li>
+                        <li><a class="dropdown-item" href="karnataka.html">Karnataka Election</a></li>
+                        <li><a class="dropdown-item" href="kerala.html">Kerala Election</a></li>
+                        <li><a class="dropdown-item" href="madhyapradesh.html">Madhya Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="maharashtra.html">Maharashtra Election</a></li>
+                        <li><a class="dropdown-item" href="manipur.html">Manipur Election</a></li>
+                        <li><a class="dropdown-item" href="meghalaya.html">Meghalaya Election</a></li>
+                        <li><a class="dropdown-item" href="mizoram.html">Mizoram Election</a></li>
+                        <li><a class="dropdown-item" href="nagaland.html">Nagaland Election</a></li>
+                        <li><a class="dropdown-item" href="orissa.html">Odisha Election</a></li>
+                        <li><a class="dropdown-item" href="punjab.html">Punjab Election</a></li>
+                        <li><a class="dropdown-item" href="rajasthan.html">Rajasthan Election</a></li>
+                        <li><a class="dropdown-item" href="sikkim.html">Sikkim Election</a></li>
+                        <li><a class="dropdown-item" href="tamilnadu.html">Tamil Nadu Election</a></li>
+                        <li><a class="dropdown-item" href="telangana.html">Telangana Election</a></li>
+                        <li><a class="dropdown-item" href="tripura.html">Tripura Election</a></li>
+                        <li><a class="dropdown-item" href="uttar pradesh.html">Uttar Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="uttarakhand.html">Uttarakhand Election</a></li>
+                        <li><a class="dropdown-item" href="west bengal.html">West Bengal Election</a></li>
+                    </ul>
+                </li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container container-flex">
+
+        <main role="main">
+            <article class="article-featured" id="p4">
+                <h2 class="article-title"><mark>Recognised Parties in Sikkim</mark></h2>
+                
+             <p class="article-body"><i>
+                <table  id="parties">
+                    <tr>
+                        <th>Name:</th>
+                        <td><a href="https://en.wikipedia.org/wiki/Sikkim_Democratic_Front" style="text-decoration: none; color: #f59241;">Sikkim Democratic Front</a></td>
+                        <td><a href="https://en.wikipedia.org/wiki/Sikkim_Krantikari_Morcha" style="text-decoration: none; color: #f59241;">Sikkim Krantikari Morcha</a></td>
+            
+                    </tr>
+
+                    </tr>
+                    <tr>
+                      <th>Abbrivation:</th>
+                      <td>SDF</td>
+                      <td>SKM</td>
+                      
+                    </tr>
+                    <tr>
+                      <th>Foundation year:</th>
+                      <td>1993</td>
+                      <td>2013</td>
+                      
+                    </tr>
+                    <tr>
+                        <th>Current Leader(s):</th>
+                        <td><a href="https://en.wikipedia.org/wiki/Pawan_Kumar_Chamling" style="text-decoration: none; color: #f59241;">Pawan Kumar Chamling</a></td>
+                        <td><a href="https://en.wikipedia.org/wiki/Prem_Singh_Tamang" style="text-decoration: none; color: #f59241;">Prem Singh Tamang</a></td>
+                    
+                    </tr>
+                    <tr>
+                        <th>Symbol:</th>
+                        <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Indian_Election_Symbol_Umberlla.png/150px-Indian_Election_Symbol_Umberlla.png"></td>
+                        <td><img src="">Table Lamp</td>
+                    </tr>
+                    
+                  </table> 
+                  
+             </i></p></a>
+             
+                <p id="coml" class="rc"><i></i></p>
+            </article>
+
+        
+            <article class="article-featured">
+                <h2 class="article-title"><mark>About Sikkim Elections</mark></h2>
+              <p class="article-body"><i>
+                Sikkim, one of the smallest and the least populated states in the country, has a unicameral legislature, with only one 
+                house of the State Legislative Assembly also called the Vidhan Sabha. The State legislative Assembly has 32 directly 
+                elected members. The tenure of the Vidhan Sabha is 
+                five years unless it is dissolved. The seat of the State Legislative Assembly is at Gangtok, the capital of the state.
+
+                The north eastern Himalayan kingdom of Sikkim joined the Indian Union on April 26, 1975. The first Legislative Assembly 
+                elections were held in 1979. 
+                The Indian National Congress won the first elections. Since then, the state has held regular elections to the Vidhan Sabha. 
+                In 1984 Sikkim Sangram Parishad founded by Shri Nar Bahadur Bhandari came to power. The party remained in power 
+                for ten years till losing ground to the SDF.
+              </i></p></a>
+
+                <a href="https://www.elections.in/sikkim/" class="article-read-more">CONTINUE READING</a>
+                
+                <p id="coml" class="rc"><i></i></p>
+            </article>
+             <!-- Facts table-->
+            <article class="article-featured" id="p1">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark>Quick facts for Sikkim Elections</mark></h2>
+            
+                <a href="#" style="text-decoration: none;  color: rgb(80, 79, 79);"> <p class="article-body">
+                <table class="hoverTable" style="text-align:left;">
+                    <tr>
+                      <td width="330">Parliamentary Constituencies</td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>Assembly Constituencies</td>
+                      <td>32</td>
+                    </tr>
+                    <tr>
+                      <td>Ruling Party</td>
+                      <td> Sikkim Krantikari Morcha</td>
+                    </tr>
+                    <tr>
+                        <td>Cheif Minister</td>
+                        <td>Prem Singh Tamang</td>
+                    </tr>
+                    <tr>
+                        <td>Governor</td>
+                        <td>Ganga Prasad</td>
+                    </tr>
+                    <tr>
+                        <td>Chief Electoral Officer</td>
+                        <td>Shri D. Anandan</td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>Top Floor, North Sikkim Taxi Stand, Near Vajra Cinema Hall, Baluwakhani, Gangtok Sikkim- 737101</td>
+                    </tr>
+            
+                  </table></p></a>
+                </div>  
+            </article>
+
+
+            <article class="article-featured" id="p2">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark>Sikkim Legislative Assembly (Vidhan Sabha) Elections 2019 Summary</mark></h2>
+                    <p class="article-body"><i>
+                        Legislative Assembly elections were held in Sikkim on 11 April 2019 to elect the 32 members of the ninth Legislative Assembly.
+                         The term of the eighth Sikkim Legislative Assembly ended on 27 May 2019.
+                    </i></p>
+                    <a href="https://en.wikipedia.org/wiki/2019_Sikkim_Legislative_Assembly_election#Schedule_of_election"
+                        class="article-read-more">CONTINUE READING</a>
+                </div>
+
+            </article>
+
+            <article class="article-featured" id="p3">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark>Sikkim Lok Sabha Election 2019 Summary</mark></h2>
+                    <p class="article-body"><i>
+                        Sikkim Lok Sabha constituency is a Lok Sabha (lower house of the Indian parliament) constituency which covers the 
+                        entire area of the state of Sikkim.
+
+                        Sikkim participated in its first general elections in 1977 after joining the Union in 1975. Its first member of parliament (MP) 
+                        was Chatra Bahadur Chhetri of the Indian National Congress who was elected unopposed. 
+                        The current MP is Indra Hang Subba, who has represented the constituency since 2019. His term is expected to end in May 2024.
+
+                    </i></p>
+                    <a href="https://en.wikipedia.org/wiki/Sikkim_(Lok_Sabha_constituency)" class="article-read-more">CONTINUE READING</a>
+                </div>
+            </article>
+
+        </main>
+
+        <aside class="sidebar">
+
+            <div class="sidebar-widget">
+                <h2 class="widget-title">About Sikkim</h2>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbS4W4WBLDrTwEXFkgDKyqLyGLqjtyTzZMxg&usqp=CAU" alt="" class="widget-image">
+                <p class="widget-body rc"><p>
+                    Sikkim is a state in northeast India, bordered by Bhutan, Tibet and Nepal. 
+                    Part of the Himalayas, the area has a dramatic landscape that includes India’s highest mountain, 8,586m Kangchenjunga.<br>
+                    <b>Area:</b> 7,096 km² <br>
+                    <b>Capital:</b> Gangtok<br>
+                    <b>Chief minister:</b> Prem Singh Tamang<br>
+                    <b>Population:</b> 6.19 lakhs (2012)
+
+
+            </div>
+            <!--GO TO CONTANIER-->
+            <div class="sidebar-widget">
+                <h2 class="widget-title">Go to...</h2>
+                <div class="widget-recent-post">
+                    <a href="#p4" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Recognised Parties in Sikkim</h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="#p1" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Quick facts for Sikkim Elections</h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="#p2" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Sikkim Legislative Assembly (Vidhan Sabha) Elections 2019 Summary</h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="#p3" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Sikkim Lok Sabha Election 2019 Summary</h3>
+                    </a>
+                </div>
+
+            </div>
+            <!--Third aside-->
+            <div class="sidebar-widget">
+                <h2 class="widget-title">2019 Sikkim Legislative Assembly Elections</h2>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/2019_assembly_election_Sikkim.png/300px-2019_assembly_election_Sikkim.png" alt="" class="widget-image">    
+            </div>
+                  
+        </aside>
+    </div>
+    <script>
+        function myFunction() {
+            var person = prompt("Comment as", "Roshini Chavan");
+            if (person != null) {
+                var com = document.getElementById("myText").value;
+                var today = new Date();
+                document.getElementById("coml").innerHTML = "<b>" + "Comment posted: <br>" + person + "</b>" + " " + com + "<br>" + "<div class='rc article-body' style='opacity:50%; border:none;padding-left:3%'>" + today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + ',' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds(); "</div>";
+
+                var com = document.getElementById("just").innerHTML = ""
+                document.getElementById("num").innerHTML = "4";
+
+            }
+        }
+    </script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=4ewHTtLY"></script>
+</body>
+
+</html>
+                    

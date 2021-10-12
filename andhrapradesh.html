@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="chatbotrsvotes"
+  agent-id="91b70d7a-2d4c-4f07-b687-29f908704667"
+  language-code="en"
+  allow="microphone;"
+></df-messenger>
+    <style>
+        .btncom {
+            background-color: #878a87;
+            /* Green */
+            border: none;
+            border-radius: 10px 10px 10px 0px;
+            color: white;
+            font-family: sans-serif;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .btncom:hover {
+            transform: scale3d(0.9, 0.9, 0.9);
+            transition-duration: 2s;
+            background-color: rgb(51, 50, 50);
+            border: none;
+            color: #dde0dd;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+        }
+
+        header {
+            height: 100%
+        }
+
+        .rc {
+            font-family: 'Caveat', cursive;
+            padding-left: 5%;
+            opacity: 70%;
+
+        }
+
+        input[type=text] {
+            width: 270px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+            background-image: url('searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+            transition: width 0.4s ease-in-out;
+        }
+
+        input[type=text]:focus {
+            width: 90%;
+            border-color: #fcfafa;
+
+        }
+
+        .comcon {
+            padding-left: 5%;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            font-size: 1.125rem;
+            font-weight: 300;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .image-full {
+            max-height: 300px;
+            width: 100%;
+            object-fit: cover;
+            margin-bottom: 2em;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: serif;
+            font-weight: 400;
+            color: #143774;
+            margin-top: 0;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        h3 {
+            color: #1792d2;
+        }
+
+        .subtitle {
+            font-weight: 700;
+            color: #1792d2;
+            font-size: .75rem;
+            margin: 0;
+        }
+
+        .article-title {
+            font-size: 1.5rem;
+            padding-left: 5%;
+        }
+
+        .article-read-more,
+        .article-info {
+            font-size: .875rem;
+        }
+
+        .article-read-more {
+            color: #1792d2;
+            text-decoration: none;
+            font-weight: 700;
+            padding-left: 5%;
+            padding-right: 2%;
+        }
+
+        .article-read-more:hover,
+        .article-read-more:focus {
+            color: #143774;
+            text-decoration: underline;
+            transform: rotateX(360deg);
+            transition-duration: 2s;
+
+
+        }
+
+        .sidebar-widget {
+            animation-duration: 3s;
+            animation-name: slidein;
+        }
+
+        @keyframes slidein {
+            from {
+                margin-left: 100%;
+                width: 300%;
+            }
+
+            to {
+                margin-left: 0%;
+                width: 100%;
+            }
+        }
+
+        .article-info {
+            margin: 2em 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
+
+        }
+
+        .container-nav,
+        .container-flex {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header {
+            background: #f8f8f8;
+            text-align: center;
+            padding: 2em 0;
+            margin-bottom: 3em;
+        }
+
+        footer {
+            background: #143774;
+            color: white;
+            text-align: center;
+            padding: .5em 0;
+        }
+
+        .fa-heart {
+            color: red;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: red;
+        }
+
+        strong {
+            font-weight: 700;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        nav li {
+            margin: .5em 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #707070;
+            font-weight: 700;
+            margin: .25em 0;
+        }
+
+        nav a:hover,
+        nav a:focus {
+            color: #1792d2;
+        }
+
+        .dogg {
+            transform: scale3d(0, 0, 0);
+        }
+
+        .dogg:hover {
+            transform: scale3d(1.2, 1.2, 1.2);
+        }
+
+        a.current-page {
+            position: relative;
+            color: #143774;
+        }
+
+        a.current-page:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: rgb(27, 8, 8);
+            visibility: hidden;
+            transform: scaleX(0);
+            transition: all 0.3s ease-in-out;
+        }
+
+        a.current-page:hover:before {
+            visibility: visible;
+            transform: scaleX(1);
+
+        }
+
+        .article-featured {
+            border-bottom: #707070 1px solid;
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            color: darkgray;
+            border-radius: 2px 2px 2px 0px;
+            background-color: #fcfafa;
+            border-radius: 2%;
+        }
+
+        .article-featured:hover {
+
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            transition-duration: 1s;
+            color: black;
+            transform: scale3d(1.009, 1.009, 1.009);
+
+        }
+
+        .article-recent {
+            display: flex;
+            width: 70vw;
+            flex-direction: column;
+            margin-bottom: 2em;
+            border-bottom: #707070 1px solid;
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            color: darkgray;
+            border-radius: 2px 2px 2px 0px;
+            background-color: #fcfafa;
+            border-radius: 2%;
+        }
+
+        .article-recent:hover {
+
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            transition-duration: 1s;
+            color: black;
+            transform: scale3d(1.009, 1.009, 1.009);
+
+        }
+
+        .article-recent-main {
+            order: 2;
+            width: 100%;
+
+        }
+
+        .article-recent-secondary {
+            order: 1;
+        }
+
+        .sidebar-widget {
+            border: 10px solid #efefef;
+            margin-bottom: 2em;
+            padding: 1em;
+        }
+
+        .widget-body:hover {
+            transform: scale3d(1.2, 1.2, 1.2);
+            transition-duration: 1s;
+        }
+
+
+
+        .widget-recent-post-title {
+            font-size: 1rem;
+        }
+
+        .widget-recent-post {
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid #707070;
+            margin-bottom: 1em;
+        }
+
+        .widget-recent-post:last-child {
+            border: 0;
+            margin: 0;
+        }
+
+        .widget-image {
+            order: -1;
+            margin-bottom: .5em;
+        }
+
+        .article-body {
+            padding-left: 5%;
+            padding-right: 2%;
+            text-justify:auto;
+            text-align-last: justify;
+            border-left: 6px solid rgb(119, 116, 116);
+            background-color: #fcfafa;
+
+
+        }
+        .hoverTable{
+            width: 100%;
+            border-collapse: collapse;
+            margin-left: 2%;
+        }
+        .hoverTable tr:hover{
+            background-color: #fdf1dd;
+        }
+        #parties {
+         margin-left: 2%;
+         margin-right: 2%;
+         border-collapse: collapse;
+         width: 96%;
+        }
+
+        #parties td,#parties th {
+           border: 2px solid rgb(255, 249, 249);
+           padding: 8px;
+           text-align: left;
+           text-decoration: none;
+           color: #363636;
+        }
+        
+        #parties td:nth-child(even){background-color: #fff4e4;}
+
+        @media (min-width: 675px) {
+
+            .container-nav,
+            .container-flex {
+                flex-direction: row;
+            }
+
+            .container-nav {
+                align-items: center;
+            }
+
+            main {
+                width: 70%;
+            }
+
+            aside {
+                width: 25%;
+                min-width: 200px;
+                margin-left: 1em;
+            }
+
+            nav ul {
+                flex-direction: row;
+            }
+
+            nav li {
+                margin-left: 2em;
+            }
+
+
+            .article-recent {
+                flex-direction: row;
+                justify-content: space-between;
+
+            }
+
+            .article-recent-main {
+                width: 95%;
+                text-align: justify;
+            }
+
+            .article-recent-secondary {
+                width: 30%;
+            }
+
+            .article-title {
+                order: 99;
+            }
+
+            .article-image {
+                width: 100%;
+                min-height: 200px;
+                object-fit: cover;
+                border-radius: 2% 2% 0% 0%;
+            }
+
+
+            .article-featured {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .article-image {
+                order: -2;
+            }
+
+            .article-info {
+                order: -1;
+            }
+
+            .article-title {
+                order: 0;
+            }
+
+        }
+    .buttonsss{
+        width:20%;
+        padding:1%;
+        border-radius:0px 20px 20px 20px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  
+
+    }
+    .scrollable-menu {
+    height: auto;
+    max-height: 300px;
+    overflow-x: hidden;
+}
+    </style>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+    
+    <title>RSvotes | Andhra Pradesh</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    
+    </head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">RSvotes</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="aboutparties.html">About parties</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="vote.php">Vote Now!</a></li>
+                    </li> 
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+        -->
+
+
+    <header>
+        <div class="container container-nav">
+            <div class="site-title" style="text-align: center;">
+                <h1>Andhra Pradesh Election</h1>
+                <p class="subtitle" ><h3>Results & Updates<h3</p>
+            </div>
+            
+            <nav>
+
+                <ul>
+                    <li><a href="aboutparties.html">National<br> Parties</a></li>
+                   <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false" class="current-page">
+                        State Parties
+                    </a>
+                    <ul class="dropdown-menu scrollable-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="andhrapradesh.html">Andhra Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="arunachalpradhesh.html">Arunachal Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="assam.html">Assam Election</a></li>
+                        <li><a class="dropdown-item" href="bihar.html">Bihar Election</a></li>
+                        <li><a class="dropdown-item" href="chhattisgarh.html">Chhattisgarh Election</a></li>
+                        <li><a class="dropdown-item" href="delhi.html">Delhi Election</a></li>
+                        <li><a class="dropdown-item" href="Goa.html">Goa Election</a></li>
+                        <li><a class="dropdown-item" href="gujarat.html">Gujarat Election</a></li>
+                        <li><a class="dropdown-item" href="haryana.html">Haryana Election</a></li>
+                        <li><a class="dropdown-item" href="himachal.html">Himachal Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="jharkhand.html">Jharkhand Election</a></li>
+                        <li><a class="dropdown-item" href="karnataka.html">Karnataka Election</a></li>
+                        <li><a class="dropdown-item" href="kerala.html">Kerala Election</a></li>
+                        <li><a class="dropdown-item" href="madhyapradesh.html">Madhya Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="maharashtra.html">Maharashtra Election</a></li>
+                        <li><a class="dropdown-item" href="manipur.html">Manipur Election</a></li>
+                        <li><a class="dropdown-item" href="meghalaya.html">Meghalaya Election</a></li>
+                        <li><a class="dropdown-item" href="mizoram.html">Mizoram Election</a></li>
+                        <li><a class="dropdown-item" href="nagaland.html">Nagaland Election</a></li>
+                        <li><a class="dropdown-item" href="orissa.html">Odisha Election</a></li>
+                        <li><a class="dropdown-item" href="punjab.html">Punjab Election</a></li>
+                        <li><a class="dropdown-item" href="rajasthan.html">Rajasthan Election</a></li>
+                        <li><a class="dropdown-item" href="sikkim.html">Sikkim Election</a></li>
+                        <li><a class="dropdown-item" href="tamilnadu.html">Tamil Nadu Election</a></li>
+                        <li><a class="dropdown-item" href="telangana.html">Telangana Election</a></li>
+                        <li><a class="dropdown-item" href="tripura.html">Tripura Election</a></li>
+                        <li><a class="dropdown-item" href="uttar pradesh.html">Uttar Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="uttarakhand.html">Uttarakhand Election</a></li>
+                        <li><a class="dropdown-item" href="west bengal.html">West Bengal Election</a></li>
+                    
+                    </ul>
+                </li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container container-flex">
+
+        <main role="main">
+            <article class="article-featured" id="p4">
+                <h2 class="article-title"><mark>Recognised Parties in Andhra Pradesh</mark></h2>
+                
+             <p class="article-body"><i>
+                <table  id="parties">
+                    <tr>
+                        <th>Name:</th>
+                        <td><a href="https://en.wikipedia.org/wiki/Yuvajana_Sramika_Rythu_Congress_Party" style="text-decoration: none; color: #f59241;">Yuvajana Sramika Rythu Congress Party</a></td>
+                        <td ><a href="https://en.wikipedia.org/wiki/Telugu_Desam_Party" style="text-decoration: none; color: #f59241;">Telugu Desam Party</a></td>
+                    </tr>
+                    <tr>
+                      <th>Abbrivation:</th>
+                      <td>YSRCP</td>
+                      <td>TDP</td>
+                    </tr>
+                    <tr>
+                      <th>Foundation year:</th>
+                      <td>2011</td>
+                      <td>1982</td>
+                    </tr>
+                    <tr>
+                        <th>Current Leader(s):</th>
+                        <td><a href="https://en.wikipedia.org/wiki/Y._S._Jagan_Mohan_Reddy" style="text-decoration: none; color: #f59241;">Y. S. Jagan Mohan Reddy</a></td>
+                        <td><a href="https://en.wikipedia.org/wiki/N._Chandrababu_Naidu" style="text-decoration: none; color: #f59241;">N. Chandrababu Naidu</a></td>
+                    </tr>
+                    <tr>
+                        <th>Symbol:</th>
+                        <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Indian_Election_Symbol_Ceiling_Fan.svg/150px-Indian_Election_Symbol_Ceiling_Fan.svg.png"></td>
+                        <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Indian_Election_Symbol_Cycle.png/150px-Indian_Election_Symbol_Cycle.png"></td>
+                    </tr>
+                    
+                  </table> 
+                  
+             </i></p></a>
+             
+                <p id="coml" class="rc"><i></i></p>
+            </article>
+
+            <article class="article-featured">
+                <h2 class="article-title"><mark>About Andhra Pradesh Elections</mark></h2>
+                
+             <a href="#" style="text-decoration: none;  color: rgb(80, 79, 79);"> <p class="article-body"><i>
+                Andhra Pradesh is the eighth largest state in India by land and tenth most populous state. 
+                Amravati is the capital of Andhra Pradesh and Telegu is the largely spoken and official language of the state.
+                In June 2014, a portion of Andhra Pradesh was separated to form a new state called Telangana. 
+                There are about 13 districts in Andhra Pradesh.
+                Y. S. Jaganmohan Reddy is the Chief Minister of Andhra Pradesh since 2019.
+                His party had a landslide victory by winning 151 out of 175 seats of the State Legislative Assembly.
+                Indian National Congress which had ruled the state for most of the time did not win a single seat for the 2019 assembly election. 
+                Chandrababu Naidu who was the incumbent Chief Minister faced anti-incumbency. His party won 23 seats.....</i></p></a>
+
+                <a href="https://en.wikipedia.org/wiki/Elections_in_Andhra_Pradesh" class="article-read-more">CONTINUE READING</a>
+    
+                <p id="coml" class="rc"><i></i></p>
+            </article>
+
+
+            <article class="article-featured" id="p1">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark>Quick facts for Andhra Pradesh Elections</mark></h2>
+            
+                
+                <a href="#" style="text-decoration: none;  color: rgb(80, 79, 79);"> <p class="article-body">
+                <table class="hoverTable" style="text-align:left;">
+                    <tr>
+                      <td width="330">Parliamentary Constituencies</td>
+                      <td>25</td>
+                    </tr>
+                    <tr>
+                      <td>Assembly Constituencies</td>
+                      <td>175</td>
+                    </tr>
+                    <tr>
+                      <td>Ruling Party</td>
+                      <td>YSR Congress</td>
+                    </tr>
+                    <tr>
+                      <td>Opposition Party</td>
+                      <td>TDP</td>
+                    </tr>
+                    <tr>
+                        <td>Cheif Minister</td>
+                        <td>Y. S. Jaganmohan Reddy</td>
+                    </tr>
+                    <tr>
+                        <td>Deputy Cheif Minister</td>
+                        <td>A. Kali Krishna Srinivas</td>
+                    </tr>
+                    <tr>
+                        <td>Deputy Cheif Minister</td>
+                        <td>Amzath Basha Shaik Bepari</td>
+                    </tr>
+                    <tr>
+                        <td>Deputy Cheif Minister</td>
+                        <td>P. Puspasreevani</td>
+                    </tr>
+                    <tr>
+                        <td>Deputy Cheif Minister</td>
+                        <td>K. Narayana Swamy</td>
+                    </tr><tr>
+                        <td>Opposition Leader</td>
+                        <td>Chandrababu Naidu</td>
+                    </tr>
+                    <tr>
+                        <td>Governor</td>
+                        <td>Biswabhusan Harichandan</td>
+                    </tr>
+                    <tr>
+                        <td>Chief Electoral Officer</td>
+                        <td>Sh. K. Vijayanand</td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>H' Block, South wing,GA(Elections) Dept.
+                            A.P. Secretariat, Hyderabad
+                            040-23455781 (Fax)</td>
+                    </tr>
+            
+                  </table></p></a>
+                </div>  
+            </article>
+
+
+            <article class="article-featured" id="p2">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark>Andhra Pradesh Legislative Assembly (Vidhan Sabha) Elections 2019 Summary</mark></h2>
+                    <p class="article-body"><i>
+
+                        The Andhra Pradesh Vidhan Sabha Election 2019 took place on 11 March, 
+                        simultaneously with the Lok Sabha Election 2019. 
+                        There are 175 seats in the Andhra Pradesh Legislative Assembly. 
+                        YSR Congress Party scored a landslide victory by winning 151 seats of the state assembly. 
+                        The Incumbent Chief Minister Chandrababu Naidu was dethroned as he won only 23 seats.Jana Sena Party managed 1 seat of the Assembly.
+                        On the other hand, the Indian National Congress and Bharatiya Janata Party could not open their accounts in the election.
+                        The main competition was between the YSR Congress Party against TDP and an alliance of Jana Sena Party, CPI, CPI(M), BSP. 
+                        The majority mark for Andhra Pradesh is 88, therefore, YSR Congress Party secured about 86% seats of the State Assembly by winning 151 seats.
+                        The Overall Voter turnout for the election was 80 percent. YSR Congress had a vote share of 49.2% TDP and INC had a vote share of 39.2 and 1.17 percent respectively. 
+                        This was the second election after bifurcation of the state Andhra Pradesh and Telangana.
+                        This election constituted the fifteenth Legislative Assembly of Andhra Pradesh.</i>
+                    </p>
+                </div>
+
+            </article>
+
+            <article class="article-featured" id="p3">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark> Andhra Pradesh Lok Sabha Election 2019 Summary</mark></h2>
+                    <p class="article-body"><i>The Lok Sabha Election for the year 2019 was held in Andhra Pradesh on 11 March 2019.
+                         There are 25 seats of Lok Sabha in Andhra Pradesh. Along with the general elections, elections
+                        for the Andhra Pradesh Legislative Assembly/ Vidhan Sabha were held simultaneously. 
+                        YSR Congress Party led by Y. S. Jaganmohan Reddy won 23 out of 25 seats of Lok Sabha. 
+                        Bharatiya Janata Party which was incumbent in the center did not win a single seat of Lok Sabha from Andhra Pradesh. 
+                        Whereas the remaining three seats were won by Telegu Desam Party (TDP).The Voter turnout for the Andhra Pradesh 
+                        Lok Sabha Election 2019 was 80%. YSR Congress Party had a vote share of 49.15%, TDP- 39.59%, INC- 1.29%, and BJP 0.96%. 
+                        The YSR Congress Party had an increase of 14 seats as compared to the General Election of 2014. Chandrababu Naidu’s 
+                        TDP had a downfall of 12 seats from the 15 seats won in the 2014 election.
+                        The popularity of the YSR Congress Party also reflected in the Andhra Pradesh Vidhan Sabha Election 2019.
+                    </i></p>
+                    <a href="https://www.elections.in/andhra-pradesh/parliamentary-constituencies/"
+                        class="article-read-more">CONTINUE READING</a>
+                </div>
+            </article>
+        
+        
+        </main>
+
+        <aside class="sidebar">
+
+            <div class="sidebar-widget">
+                <h2 class="widget-title">About Andhra Pradesh</h2>
+                <img src="https://www.apindustries.gov.in/APIndus/New_Images/about_img_mid.jpg" alt="" class="widget-image">
+                <p class="widget-body rc">Andhra Pradesh is a state in the south-eastern coastal region of India. 
+                    It is the seventh-largest state by area covering an area of 162,975 km² and tenth-most populous state with 49,386,799 inhabitants.</p>
+            </div>
+            
+            <div class="sidebar-widget">
+                <h2 class="widget-title">Go to...</h2><div class="widget-recent-post">
+                    <a href="#p4" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Recognised Parties in Andhra Pradesh</h3>
+                    </a>
+                    <img src="img/work.jpg" alt="" class="widget-image">
+                </div>
+
+
+                <div class="widget-recent-post">
+                    <a href="#p1" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Quick facts for Andhra Pradesh Elections</h3>
+                    </a>
+                    <img src="img/food.jpg" alt="" class="widget-image">
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="#p2" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Andhra Pradesh Legislative Assembly (Vidhan Sabha) Elections 2019 Summary</h3>
+    
+                    </a>
+                    <img src="img/work.jpg" alt="" class="widget-image">
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="#p3" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Andhra Pradesh Lok Sabha Election 2019 Summary</h3>
+                    </a>
+                    <img src="img/work.jpg" alt="" class="widget-image">
+                </div>
+
+            </div>
+            <div class="sidebar-widget">
+                <h2 class="widget-title">2019 Andhra Pradesh Legislative Assembly Elections</h2>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/AP_2019_Assembly_election_results.png/400px-AP_2019_Assembly_election_results.png" alt="" class="widget-image">
+                
+            </div>
+            
+            <!--Andhra Pradesh paraliamentry list-->
+            <div class="sidebar-widget">
+                <h2 class="widget-title"><a href="https://www.elections.in/andhra-pradesh/parliamentary-constituencies/" style="text-decoration: none; color: rgb(16, 33, 90);" >AP Paraliamentry</h2></a>
+
+                <div class="widget-recent-post">
+                    <a href="https://www.elections.in/andhra-pradesh/parliamentary-constituencies/araku.html" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Araku</h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="https://www.elections.in/andhra-pradesh/parliamentary-constituencies/bapatla.html" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Bapatla</h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="https://www.elections.in/andhra-pradesh/parliamentary-constituencies/chittoor.html" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Chittoor</h3>
+                    </a>
+                </div>
+                <div class="widget-recent-post">
+                    <a href="https://www.elections.in/andhra-pradesh/parliamentary-constituencies/eluru.html" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Eluru</h3>
+                    </a>
+                </div>
+                <div class="widget-recent-post">
+                    <a href="https://www.elections.in/andhra-pradesh/parliamentary-constituencies/" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">More...</h3>
+                    </a>
+                </div>
+            </div>
+            <div class="sidebar-widget">
+                <h2 class="widget-title"><a href="https://www.elections.in/andhra-pradesh/polling-stations/" style="text-decoration: none; color: rgb(16, 33, 90);">AP Polling Booth</h2></a>
+
+                <div class="widget-recent-post">
+                    <a href="https://www.elections.in/andhra-pradesh/polling-stations/achanta.html" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Achanta</h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="https://www.elections.in/andhra-pradesh/polling-stations/guntur-east.html" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Guntur</h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="https://www.elections.in/andhra-pradesh/polling-stations/narasapuram.html" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Narasapuram</h3>
+                    </a>
+                </div>
+                <div class="widget-recent-post">
+                    <a href="https://www.elections.in/andhra-pradesh/polling-stations/rampachodavaram.html" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Rampachodavaram</h3>
+                    </a>
+                </div>
+            </div>
+        </aside>
+    </div>
+    <script>
+        function myFunction() {
+            var person = prompt("Comment as", "Roshini Chavan");
+            if (person != null) {
+                var com = document.getElementById("myText").value;
+                var today = new Date();
+                document.getElementById("coml").innerHTML = "<b>" + "Comment posted: <br>" + person + "</b>" + " " + com + "<br>" + "<div class='rc article-body' style='opacity:50%; border:none;padding-left:3%'>" + today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + ',' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds(); "</div>";
+
+                var com = document.getElementById("just").innerHTML = ""
+                document.getElementById("num").innerHTML = "4";
+
+            }
+        }
+    </script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=4ewHTtLY"></script>
+</body>
+
+</html>

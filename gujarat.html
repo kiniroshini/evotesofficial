@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="chatbotrsvotes"
+  agent-id="91b70d7a-2d4c-4f07-b687-29f908704667"
+  language-code="en"
+  allow="microphone;"
+></df-messenger>
+    <style>
+        .btncom {
+            background-color: #878a87;
+            /* Green */
+            border: none;
+            border-radius: 10px 10px 10px 0px;
+            color: white;
+            font-family: sans-serif;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .btncom:hover {
+            transform: scale3d(0.9, 0.9, 0.9);
+            transition-duration: 2s;
+            background-color: rgb(51, 50, 50);
+            border: none;
+            color: #dde0dd;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+        }
+
+        header {
+            height: 100%
+        }
+
+        .rc {
+            font-family: 'Caveat', cursive;
+            padding-left: 5%;
+            opacity: 70%;
+
+        }
+
+        input[type=text] {
+            width: 270px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+            background-image: url('searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+            transition: width 0.4s ease-in-out;
+        }
+
+        input[type=text]:focus {
+            width: 90%;
+            border-color: #fcfafa;
+
+        }
+
+        .comcon {
+            padding-left: 5%;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            font-size: 1.125rem;
+            font-weight: 300;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .image-full {
+            max-height: 300px;
+            width: 100%;
+            object-fit: cover;
+            margin-bottom: 2em;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: serif;
+            font-weight: 400;
+            color: #143774;
+            margin-top: 0;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        h3 {
+            color: #1792d2;
+        }
+
+        .subtitle {
+            font-weight: 700;
+            color: #1792d2;
+            font-size: .75rem;
+            margin: 0;
+        }
+
+        .article-title {
+            font-size: 1.5rem;
+            padding-left: 5%;
+        }
+
+        .article-read-more,
+        .article-info {
+            font-size: .875rem;
+        }
+
+        .article-read-more {
+            color: #1792d2;
+            text-decoration: none;
+            font-weight: 700;
+            padding-left: 5%;
+            padding-right: 2%;
+        }
+
+        .article-read-more:hover,
+        .article-read-more:focus {
+            color: #143774;
+            text-decoration: underline;
+            transform: rotateX(360deg);
+            transition-duration: 2s;
+
+
+        }
+
+        .sidebar-widget {
+            animation-duration: 3s;
+            animation-name: slidein;
+        }
+
+        @keyframes slidein {
+            from {
+                margin-left: 100%;
+                width: 300%;
+            }
+
+            to {
+                margin-left: 0%;
+                width: 100%;
+            }
+        }
+
+        .article-info {
+            margin: 2em 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
+
+        }
+
+        .container-nav,
+        .container-flex {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header {
+            background: #f8f8f8;
+            text-align: center;
+            padding: 2em 0;
+            margin-bottom: 3em;
+        }
+
+        footer {
+            background: #143774;
+            color: white;
+            text-align: center;
+            padding: .5em 0;
+        }
+
+        .fa-heart {
+            color: red;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: red;
+        }
+
+        strong {
+            font-weight: 700;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        nav li {
+            margin: .5em 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #707070;
+            font-weight: 700;
+            margin: .25em 0;
+        }
+
+        nav a:hover,
+        nav a:focus {
+            color: #1792d2;
+        }
+
+        .dogg {
+            transform: scale3d(0, 0, 0);
+        }
+
+        .dogg:hover {
+            transform: scale3d(1.2, 1.2, 1.2);
+        }
+
+        a.current-page {
+            position: relative;
+            color: #143774;
+        }
+
+        a.current-page:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: rgb(27, 8, 8);
+            visibility: hidden;
+            transform: scaleX(0);
+            transition: all 0.3s ease-in-out;
+        }
+
+        a.current-page:hover:before {
+            visibility: visible;
+            transform: scaleX(1);
+
+        }
+
+        .article-featured {
+            border-bottom: #707070 1px solid;
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            color: darkgray;
+            border-radius: 2px 2px 2px 0px;
+            background-color: #fcfafa;
+            border-radius: 2%;
+        }
+
+        .article-featured:hover {
+
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            transition-duration: 1s;
+            color: black;
+            transform: scale3d(1.009, 1.009, 1.009);
+
+        }
+
+        .article-recent {
+            display: flex;
+            width: 70vw;
+            flex-direction: column;
+            margin-bottom: 2em;
+            border-bottom: #707070 1px solid;
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            color: darkgray;
+            border-radius: 2px 2px 2px 0px;
+            background-color: #fcfafa;
+            border-radius: 2%;
+        }
+
+        .article-recent:hover {
+
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            transition-duration: 1s;
+            color: black;
+            transform: scale3d(1.009, 1.009, 1.009);
+
+        }
+
+        .article-recent-main {
+            order: 2;
+            width: 100%;
+
+        }
+
+        .article-recent-secondary {
+            order: 1;
+        }
+
+        .sidebar-widget {
+            border: 10px solid #efefef;
+            margin-bottom: 2em;
+            padding: 1em;
+        }
+
+        .widget-body:hover {
+            transform: scale3d(1.2, 1.2, 1.2);
+            transition-duration: 1s;
+        }
+
+
+
+        .widget-recent-post-title {
+            font-size: 1rem;
+        }
+
+        .widget-recent-post {
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid #707070;
+            margin-bottom: 1em;
+        }
+
+        .widget-recent-post:last-child {
+            border: 0;
+            margin: 0;
+        }
+
+        .widget-image {
+            order: -1;
+            margin-bottom: .5em;
+        }
+
+        .article-body {
+            padding-left: 5%;
+            padding-right: 2%;
+            text-justify:auto;
+            text-align-last: justify;
+            border-left: 6px solid rgb(119, 116, 116);
+            background-color: #fcfafa;
+
+
+        }
+        .hoverTable{
+            width: 100%;
+            border-collapse: collapse;
+            margin-left: 2%;
+        }
+        .hoverTable tr:hover{
+            background-color: #fcecd0;
+        }
+        #parties {
+         margin-left: 2%;
+         margin-right: 2%;
+         border-collapse: collapse;
+         width: 96%;
+        }
+
+        #parties td,#parties th {
+           border: 2px solid rgb(255, 249, 249);
+           padding: 8px;
+        }
+        
+        #parties td:nth-child(even){background-color: #ffefd7;}
+
+        @media (min-width: 675px) {
+
+            .container-nav,
+            .container-flex {
+                flex-direction: row;
+            }
+
+            .container-nav {
+                align-items: center;
+            }
+
+            main {
+                width: 70%;
+            }
+
+            aside {
+                width: 25%;
+                min-width: 200px;
+                margin-left: 1em;
+            }
+
+            nav ul {
+                flex-direction: row;
+            }
+
+            nav li {
+                margin-left: 2em;
+            }
+
+
+            .article-recent {
+                flex-direction: row;
+                justify-content: space-between;
+
+            }
+
+            .article-recent-main {
+                width: 95%;
+                text-align: justify;
+            }
+
+            .article-recent-secondary {
+                width: 30%;
+            }
+
+            .article-title {
+                order: 99;
+            }
+
+            .article-image {
+                width: 100%;
+                min-height: 200px;
+                object-fit: cover;
+                border-radius: 2% 2% 0% 0%;
+            }
+
+
+            .article-featured {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .article-image {
+                order: -2;
+            }
+
+            .article-info {
+                order: -1;
+            }
+
+            .article-title {
+                order: 0;
+            }
+
+        }
+    .buttonsss{
+        width:20%;
+        padding:1%;
+        border-radius:0px 20px 20px 20px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  
+
+    }
+    .scrollable-menu {
+    height: auto;
+    max-height: 300px;
+    overflow-x: hidden;
+}
+    </style>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+    
+    <title>RSvotes | Gujarat </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    </head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">RSvotes</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="aboutparties.html">About parties</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="vote.php">Vote Now!</a></li>
+                    </li>
+                        
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+
+    <header>
+        <div class="container container-nav">
+            <div class="site-title" style="text-align: center;">
+                <h1>Gujarat Election</h1>
+                <p class="subtitle" ><h3>Results & Updates<h3</p>
+            </div>
+            
+            <nav>
+
+                <ul>
+                    <li><a href="aboutparties.html">National<br> Parties</a></li>
+                   <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false" class="current-page">
+                        State Parties
+                    </a>
+                    <ul class="dropdown-menu scrollable-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="andhrapradesh.html">Andhra Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="arunachalpradhesh.html">Arunachal Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="assam.html">Assam Election</a></li>
+                        <li><a class="dropdown-item" href="bihar.html">Bihar Election</a></li>
+                        <li><a class="dropdown-item" href="chhattisgarh.html">Chhattisgarh Election</a></li>
+                        <li><a class="dropdown-item" href="delhi.html">Delhi Election</a></li>
+                        <li><a class="dropdown-item" href="Goa.html">Goa Election</a></li>
+                        <li><a class="dropdown-item" href="gujarat.html">Gujarat Election</a></li>
+                        <li><a class="dropdown-item" href="haryana.html">Haryana Election</a></li>
+                        <li><a class="dropdown-item" href="himachal.html">Himachal Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="jharkhand.html">Jharkhand Election</a></li>
+                        <li><a class="dropdown-item" href="karnataka.html">Karnataka Election</a></li>
+                        <li><a class="dropdown-item" href="kerala.html">Kerala Election</a></li>
+                        <li><a class="dropdown-item" href="madhyapradesh.html">Madhya Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="maharashtra.html">Maharashtra Election</a></li>
+                        <li><a class="dropdown-item" href="manipur.html">Manipur Election</a></li>
+                        <li><a class="dropdown-item" href="meghalaya.html">Meghalaya Election</a></li>
+                        <li><a class="dropdown-item" href="mizoram.html">Mizoram Election</a></li>
+                        <li><a class="dropdown-item" href="nagaland.html">Nagaland Election</a></li>
+                        <li><a class="dropdown-item" href="orissa.html">Odisha Election</a></li>
+                        <li><a class="dropdown-item" href="punjab.html">Punjab Election</a></li>
+                        <li><a class="dropdown-item" href="rajasthan.html">Rajasthan Election</a></li>
+                        <li><a class="dropdown-item" href="sikkim.html">Sikkim Election</a></li>
+                        <li><a class="dropdown-item" href="tamilnadu.html">Tamil Nadu Election</a></li>
+                        <li><a class="dropdown-item" href="telangana.html">Telangana Election</a></li>
+                        <li><a class="dropdown-item" href="tripura.html">Tripura Election</a></li>
+                        <li><a class="dropdown-item" href="uttar pradesh.html">Uttar Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="uttarakhand.html">Uttarakhand Election</a></li>
+                        <li><a class="dropdown-item" href="west bengal.html">West Bengal Election</a></li>
+
+                    </ul>
+                </li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container container-flex">
+
+        <main role="main">
+            
+            
+            <article class="article-featured">
+                <h2 class="article-title"><mark>About Gujarat Elections</mark></h2>
+              <p class="article-body"><i>
+                The legislature of Gujarat is unicameral and the parliamentary constituency is 26. The population of this state more than 60,000,000. 
+                The official language of this state is Gujarati and the other languages spoken by the people are English and Hindi. 
+                This is a diverse state which is home to people of different castes like Hinduism, Islam, Christianity, Buddhism, Jainism and Zoroastrianism. 
+                The major cities of this state include Ahmadabad, Surat, Vadodara, Rajkot, Jamnagar and Bhavnanagar.
+                
+              </i></p></a>
+
+                <a href="https://www.elections.in/gujarat/#info_id2" class="article-read-more">CONTINUE READING</a>
+                
+                <p id="coml" class="rc"><i></i></p>
+            </article>
+             <!-- Facts table-->
+            <article class="article-featured" id="p1">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark>Quick facts for Bihar Elections</mark></h2>
+            
+                <a href="#" style="text-decoration: none;  color: rgb(80, 79, 79);"> <p class="article-body">
+                <table class="hoverTable" style="text-align:left;">
+                    <tr>
+                      <td width="330">Parliamentary Constituencies</td>
+                      <td>26</td>
+                    </tr>
+                    <tr>
+                      <td>Assembly Constituencies</td>
+                      <td>182</td>
+                    </tr>
+                    <tr>
+                      <td>Ruling Party</td>
+                      <td>Bharatiya Janata Party</td>
+                    </tr>
+                    <tr>
+                      <td>Opposition Party</td>
+                      <td>Indian National Congress</td>
+                    </tr>
+                    <tr>
+                        <td>Cheif Minister</td>
+                        <td>Bhupendrabhai Patel</td>
+                    </tr>
+                    <tr>
+                        <td>Governor</td>
+                        <td>Acharya Devvrat</td>
+                    </tr>
+                    <tr>
+                        <td>Chief Electoral Officer</td>
+                        <td>Shri Anupam Anand (I.A.S.)</td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>Block No. 7, Second Floor, Sachivalaya, Gandhinagar</td>
+                    </tr>
+            
+                  </table></p></a>
+                </div>  
+            </article>
+
+
+            <article class="article-featured" id="p2">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark>Gujarat Legislative Assembly (Vidhan Sabha) Elections 2017 Summary</mark></h2>
+                    <p class="article-body"><i>
+                        Gujarat Assembly Election 2017 for the 14th assembly was held in December 2017. The Election Commission had announced 
+                        a two-phase Gujarat assembly (Vidhan Sabha) election for 2017. The first phase of Gujarat polls was held on Dec 9, 2017,
+                        and the second phase was held on Dec 14, 2017. As announced by the Election Commission of India,the counting of votes for 
+                        the Gujarat Assembly Election 2017 was held on Dec 18, 2017, which was also the date for the counting of votes for Himachal Pradesh assembly elections 2017
+ 
+                    </i></p>
+                    <a href="https://en.wikipedia.org/wiki/2017_Gujarat_Legislative_Assembly_election"
+                        class="article-read-more">CONTINUE READING</a>
+                </div>
+
+            </article>
+
+            <article class="article-featured" id="p3">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark>Gujarat Lok Sabha Election 2019 Summary</mark></h2>
+                    <p class="article-body"><i>
+                        The 2019 Indian general election were scheduled to be held in seven phases between April and May 2019 to constitute the 17th Lok Sabha.
+                         The Election Commission of India announced the polling date for all the 26 Lok Sabha constituencies in Gujarat and it was held on April 
+                         23 during the third phase of 2019 Indian general election. The results were declared on 23 May 2019 across the country.
+
+                    </i></p>
+                    <a href="https://en.wikipedia.org/wiki/2019_Indian_general_election_in_Gujarat" class="article-read-more">CONTINUE READING</a>
+                </div>
+            </article>
+
+        </main>
+
+        <aside class="sidebar">
+
+            <div class="sidebar-widget">
+                <h2 class="widget-title">About Gujarat</h2>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2dP0dPdFgKpvDHQL57VimCU2JSucNNqQVBw&usqp=CAU" alt="" class="widget-image">
+                <p class="widget-body rc"><p>
+                    It is the fifth-largest Indian state by area and the ninth-largest state by population.
+                    <b>Area:</b>196,024 km²<br>
+                    <b>Capital:</b>Gandhinagar<br>
+                    <b>Chief minister:</b>Bhupendrabhai Patel <br>
+                    <b>Population:</b>6.27 crores (2013)
+
+
+            </div>
+            <!--GO TO CONTANIER-->
+            <div class="sidebar-widget">
+                <h2 class="widget-title">Go to...</h2>
+                
+                <div class="widget-recent-post">
+                    <a href="#p1" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Quick facts for Gujarat Elections</h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="#p2" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Gujarat Legislative Assembly (Vidhan Sabha) Elections 2017 Summary</h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="#p3" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Gujarat Lok Sabha Election 2019 Summary</h3>
+                    </a>
+                </div>
+
+            </div>
+            <!--Third aside-->
+            <div class="sidebar-widget">
+                <h2 class="widget-title">2017 Gujarat Legislative Assembly Elections</h2>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Gujarat_election_2017_result.png/400px-Gujarat_election_2017_result.png" alt="" class="widget-image">    
+            </div>
+                  
+        
+        </aside>
+    </div>
+    <script>
+        function myFunction() {
+            var person = prompt("Comment as", "Roshini Chavan");
+            if (person != null) {
+                var com = document.getElementById("myText").value;
+                var today = new Date();
+                document.getElementById("coml").innerHTML = "<b>" + "Comment posted: <br>" + person + "</b>" + " " + com + "<br>" + "<div class='rc article-body' style='opacity:50%; border:none;padding-left:3%'>" + today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + ',' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds(); "</div>";
+
+                var com = document.getElementById("just").innerHTML = ""
+                document.getElementById("num").innerHTML = "4";
+
+            }
+        }
+    </script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=4ewHTtLY"></script>
+</body>
+
+</html>

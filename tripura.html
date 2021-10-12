@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="chatbotrsvotes"
+  agent-id="91b70d7a-2d4c-4f07-b687-29f908704667"
+  language-code="en"
+  allow="microphone;"
+></df-messenger>
+    <style>
+        .btncom {
+            background-color: #878a87;
+            /* Green */
+            border: none;
+            border-radius: 10px 10px 10px 0px;
+            color: white;
+            font-family: sans-serif;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .btncom:hover {
+            transform: scale3d(0.9, 0.9, 0.9);
+            transition-duration: 2s;
+            background-color: rgb(51, 50, 50);
+            border: none;
+            color: #dde0dd;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+        }
+
+        header {
+            height: 100%
+        }
+
+        .rc {
+            font-family: 'Caveat', cursive;
+            padding-left: 5%;
+            opacity: 70%;
+
+        }
+
+        input[type=text] {
+            width: 270px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+            background-image: url('searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+            transition: width 0.4s ease-in-out;
+        }
+
+        input[type=text]:focus {
+            width: 90%;
+            border-color: #fcfafa;
+
+        }
+
+        .comcon {
+            padding-left: 5%;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            font-size: 1.125rem;
+            font-weight: 300;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .image-full {
+            max-height: 300px;
+            width: 100%;
+            object-fit: cover;
+            margin-bottom: 2em;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: serif;
+            font-weight: 400;
+            color: #143774;
+            margin-top: 0;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        h3 {
+            color: #1792d2;
+        }
+
+        .subtitle {
+            font-weight: 700;
+            color: #1792d2;
+            font-size: .75rem;
+            margin: 0;
+        }
+
+        .article-title {
+            font-size: 1.5rem;
+            padding-left: 5%;
+        }
+
+        .article-read-more,
+        .article-info {
+            font-size: .875rem;
+        }
+
+        .article-read-more {
+            color: #1792d2;
+            text-decoration: none;
+            font-weight: 700;
+            padding-left: 5%;
+            padding-right: 2%;
+        }
+
+        .article-read-more:hover,
+        .article-read-more:focus {
+            color: #143774;
+            text-decoration: underline;
+            transform: rotateX(360deg);
+            transition-duration: 2s;
+
+
+        }
+
+        .sidebar-widget {
+            animation-duration: 3s;
+            animation-name: slidein;
+        }
+
+        @keyframes slidein {
+            from {
+                margin-left: 100%;
+                width: 300%;
+            }
+
+            to {
+                margin-left: 0%;
+                width: 100%;
+            }
+        }
+
+        .article-info {
+            margin: 2em 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
+
+        }
+
+        .container-nav,
+        .container-flex {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header {
+            background: #f8f8f8;
+            text-align: center;
+            padding: 2em 0;
+            margin-bottom: 3em;
+        }
+
+        footer {
+            background: #143774;
+            color: white;
+            text-align: center;
+            padding: .5em 0;
+        }
+
+        .fa-heart {
+            color: red;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: red;
+        }
+
+        strong {
+            font-weight: 700;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        nav li {
+            margin: .5em 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #707070;
+            font-weight: 700;
+            margin: .25em 0;
+        }
+
+        nav a:hover,
+        nav a:focus {
+            color: #1792d2;
+        }
+
+        .dogg {
+            transform: scale3d(0, 0, 0);
+        }
+
+        .dogg:hover {
+            transform: scale3d(1.2, 1.2, 1.2);
+        }
+
+        a.current-page {
+            position: relative;
+            color: #143774;
+        }
+
+        a.current-page:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: rgb(27, 8, 8);
+            visibility: hidden;
+            transform: scaleX(0);
+            transition: all 0.3s ease-in-out;
+        }
+
+        a.current-page:hover:before {
+            visibility: visible;
+            transform: scaleX(1);
+
+        }
+
+        .article-featured {
+            border-bottom: #707070 1px solid;
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            color: darkgray;
+            border-radius: 2px 2px 2px 0px;
+            background-color: #fcfafa;
+            border-radius: 2%;
+        }
+
+        .article-featured:hover {
+
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            transition-duration: 1s;
+            color: black;
+            transform: scale3d(1.009, 1.009, 1.009);
+
+        }
+
+        .article-recent {
+            display: flex;
+            width: 70vw;
+            flex-direction: column;
+            margin-bottom: 2em;
+            border-bottom: #707070 1px solid;
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            color: darkgray;
+            border-radius: 2px 2px 2px 0px;
+            background-color: #fcfafa;
+            border-radius: 2%;
+        }
+
+        .article-recent:hover {
+
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            transition-duration: 1s;
+            color: black;
+            transform: scale3d(1.009, 1.009, 1.009);
+
+        }
+
+        .article-recent-main {
+            order: 2;
+            width: 100%;
+
+        }
+
+        .article-recent-secondary {
+            order: 1;
+        }
+
+        .sidebar-widget {
+            border: 10px solid #efefef;
+            margin-bottom: 2em;
+            padding: 1em;
+        }
+
+        .widget-body:hover {
+            transform: scale3d(1.2, 1.2, 1.2);
+            transition-duration: 1s;
+        }
+
+
+
+        .widget-recent-post-title {
+            font-size: 1rem;
+        }
+
+        .widget-recent-post {
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid #707070;
+            margin-bottom: 1em;
+        }
+
+        .widget-recent-post:last-child {
+            border: 0;
+            margin: 0;
+        }
+
+        .widget-image {
+            order: -1;
+            margin-bottom: .5em;
+        }
+
+        .article-body {
+            padding-left: 5%;
+            padding-right: 2%;
+            text-justify:auto;
+            text-align-last: justify;
+            border-left: 6px solid rgb(119, 116, 116);
+            background-color: #fcfafa;
+
+
+        }
+        .hoverTable{
+            width: 100%;
+            border-collapse: collapse;
+            margin-left: 2%;
+        }
+        .hoverTable tr:hover{
+            background-color: #fcecd0;
+        }
+        #parties {
+         margin-left: 2%;
+         margin-right: 2%;
+         border-collapse: collapse;
+         width: 96%;
+        }
+
+        #parties td,#parties th {
+           border: 2px solid rgb(255, 249, 249);
+           padding: 8px;
+        }
+        
+        #parties td:nth-child(even){background-color: #ffefd7;}
+
+        @media (min-width: 675px) {
+
+            .container-nav,
+            .container-flex {
+                flex-direction: row;
+            }
+
+            .container-nav {
+                align-items: center;
+            }
+
+            main {
+                width: 70%;
+            }
+
+            aside {
+                width: 25%;
+                min-width: 200px;
+                margin-left: 1em;
+            }
+
+            nav ul {
+                flex-direction: row;
+            }
+
+            nav li {
+                margin-left: 2em;
+            }
+
+
+            .article-recent {
+                flex-direction: row;
+                justify-content: space-between;
+
+            }
+
+            .article-recent-main {
+                width: 95%;
+                text-align: justify;
+            }
+
+            .article-recent-secondary {
+                width: 30%;
+            }
+
+            .article-title {
+                order: 99;
+            }
+
+            .article-image {
+                width: 100%;
+                min-height: 200px;
+                object-fit: cover;
+                border-radius: 2% 2% 0% 0%;
+            }
+
+
+            .article-featured {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .article-image {
+                order: -2;
+            }
+
+            .article-info {
+                order: -1;
+            }
+
+            .article-title {
+                order: 0;
+            }
+
+        }
+    .buttonsss{
+        width:20%;
+        padding:1%;
+        border-radius:0px 20px 20px 20px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  
+
+    }
+    .scrollable-menu {
+    height: auto;
+    max-height: 300px;
+    overflow-x: hidden;
+}
+    </style>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+    
+    <title>RSvotes | Tripura</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    </head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">RSvotes</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="aboutparties.html">About parties</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="vote.php">Vote Now!</a></li>
+                    </li>
+                        
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+
+    <header>
+        <div class="container container-nav">
+            <div class="site-title" style="text-align: center;">
+                <h1>Tripura Election</h1>
+                <p class="subtitle" ><h3>Results & Updates<h3</p>
+            </div>
+            
+            <nav>
+
+                <ul>
+                    <li><a href="aboutparties.html">National<br> Parties</a></li>
+                   <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false" class="current-page">
+                        State Parties
+                    </a>
+                    <ul class="dropdown-menu scrollable-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="andhrapradesh.html">Andhra Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="arunachalpradhesh.html">Arunachal Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="assam.html">Assam Election</a></li>
+                        <li><a class="dropdown-item" href="bihar.html">Bihar Election</a></li>
+                        <li><a class="dropdown-item" href="chhattisgarh.html">Chhattisgarh Election</a></li>
+                        <li><a class="dropdown-item" href="delhi.html">Delhi Election</a></li>
+                        <li><a class="dropdown-item" href="Goa.html">Goa Election</a></li>
+                        <li><a class="dropdown-item" href="gujarat.html">Gujarat Election</a></li>
+                        <li><a class="dropdown-item" href="haryana.html">Haryana Election</a></li>
+                        <li><a class="dropdown-item" href="himachal.html">Himachal Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="jharkhand.html">Jharkhand Election</a></li>
+                        <li><a class="dropdown-item" href="karnataka.html">Karnataka Election</a></li>
+                        <li><a class="dropdown-item" href="kerala.html">Kerala Election</a></li>
+                        <li><a class="dropdown-item" href="madhyapradesh.html">Madhya Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="maharashtra.html">Maharashtra Election</a></li>
+                        <li><a class="dropdown-item" href="manipur.html">Manipur Election</a></li>
+                        <li><a class="dropdown-item" href="meghalaya.html">Meghalaya Election</a></li>
+                        <li><a class="dropdown-item" href="mizoram.html">Mizoram Election</a></li>
+                        <li><a class="dropdown-item" href="nagaland.html">Nagaland Election</a></li>
+                        <li><a class="dropdown-item" href="orissa.html">Odisha Election</a></li>
+                        <li><a class="dropdown-item" href="punjab.html">Punjab Election</a></li>
+                        <li><a class="dropdown-item" href="rajasthan.html">Rajasthan Election</a></li>
+                        <li><a class="dropdown-item" href="sikkim.html">Sikkim Election</a></li>
+                        <li><a class="dropdown-item" href="tamilnadu.html">Tamil Nadu Election</a></li>
+                        <li><a class="dropdown-item" href="telangana.html">Telangana Election</a></li>
+                        <li><a class="dropdown-item" href="tripura.html">Tripura Election</a></li>
+                        <li><a class="dropdown-item" href="uttar pradesh.html">Uttar Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="uttarakhand.html">Uttarakhand Election</a></li>
+                        <li><a class="dropdown-item" href="west bengal.html">West Bengal Election</a></li>
+                    </ul>
+                </li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container container-flex">
+
+        <main role="main">
+            <article class="article-featured" id="p4">
+                <h2 class="article-title"><mark>Recognised Parties in Tripura</mark></h2>
+                
+             <p class="article-body"><i>
+                <table  id="parties">
+                    <tr>
+                        <th>Name:</th>
+                        <td><a href="https://en.wikipedia.org/wiki/Indigenous_People%27s_Front_of_Tripura" style="text-decoration: none; color: #f59241;">Indigenous People's Front of Tripura</a></td>
+            
+                    </tr>
+
+                    </tr>
+                    <tr>
+                      <th>Abbrivation:</th>
+                      <td>IPFT</td>
+                      
+                    </tr>
+                    <tr>
+                      <th>Foundation year:</th>
+                      <td>2009</td>
+                      
+                    </tr>
+                    <tr>
+                        <th>Current Leader(s):</th>
+                        <td><a href="https://en.wikipedia.org/wiki/Mevar_Kumar_Jamatia" style="text-decoration: none; color: #f59241;">Mevar Kumar Jamatia</a></td>
+                    
+                    </tr>
+                    <tr>
+                        <th>Symbol:</th>
+                        <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Indian_Election_symbol_Dao.svg/150px-Indian_Election_symbol_Dao.svg.png"></td>
+                    </tr>
+                    
+                  </table> 
+                  
+             </i></p></a>
+             
+                <p id="coml" class="rc"><i></i></p>
+            </article>
+
+        
+            <article class="article-featured">
+                <h2 class="article-title"><mark>About Tripura Elections</mark></h2>
+              <p class="article-body"><i>
+                Tripura Legislative Assembly has a unicameral legislature. The state Legislative Assembly is also known as the Vidhan Sabha. The Assembly consists of 60 members which are elected through polls every five years and earlier if the Assembly dissolves before time. Currently, the Assembly is at Gurkhabasti.
+
+
+The state is represented in the Indian Parliament by two directly elected members in the Lok Sabha and one indirectly elected member in the Rajya Sabha. Jharna Das of the CPM is the current Rajya Sabha MP of the state. The Communist Party of India (Marxist) and the Indian National Congress (INC) are the main political parties of the state. Manik Sarkar of the CPI(M) has been the Chief Minister of the state since 1998.
+
+The Left Front, an alliance comprising of CPI (M), CPI, Forward Block and Revolutionary Socialist Party, has been in power in the state since 1978, except in 1988 when the INC formed the government.
+              </i></p></a>
+
+                <a href="https://www.elections.in/tripura/" class="article-read-more">CONTINUE READING</a>
+                
+                <p id="coml" class="rc"><i></i></p>
+            </article>
+             <!-- Facts table-->
+            <article class="article-featured" id="p1">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark>Quick facts for Tripura Elections</mark></h2>
+            
+                <a href="#" style="text-decoration: none;  color: rgb(80, 79, 79);"> <p class="article-body">
+                <table class="hoverTable" style="text-align:left;">
+                    <tr>
+                      <td width="330">Parliamentary Constituencies</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>Assembly Constituencies</td>
+                      <td>60</td>
+                    </tr>
+                    <tr>
+                      <td>Ruling Party</td>
+                      <td>BJP</td>
+                    </tr>
+                    <tr>
+                      <td>Opposition Party</td>
+                      <td>CPI(M)</td>
+                    </tr>
+                    <tr>
+                        <td>Cheif Minister</td>
+                        <td>Biplab Kumar Deb</td>
+                    </tr>
+                    <tr>
+                        <td>Governor</td>
+                        <td>Satyadev Narayan Arya</td>
+                    </tr>
+                    <tr>
+                        <td>Chief Electoral Officer</td>
+                        <td>Sriram Taranikanti</td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>New Civil Secretariat Agartala, Tripura-799010</td>
+                    </tr>
+            
+                  </table></p></a>
+                </div>  
+            </article>
+
+
+            <article class="article-featured" id="p2">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark>Tripura Legislative Assembly (Vidhan Sabha) Elections 2018 Summary</mark></h2>
+                    <p class="article-body"><i>
+                        Tripura Assembly poll took place on 18 February 2018. The results are scheduled on March 3. The polls were conducted for 60 seats in the House. Out of the total seats in the House, 20 are reserved for the SC candidates, while 10 are reserved for ST candidates. The rest of the 30 seats are for General candidates.
+
+                        The total eligible voters in the state are reported to be 25,69,216. The total polling stations in the states were 3214. The candidates who contested the polls were 297. Out of the total candidates, 273 were men and rest 24 were women. A total of 22 candidates have criminal cases while 17 of the candidates have serious criminal charges filed against them. The IPFT ranks highest in the number of criminal candidates. BJP comes close second, while Congress ranks on the distant third position.
+                        
+                    </i></p>
+                    <a href="https://en.wikipedia.org/wiki/2018_Tripura_Legislative_Assembly_election"
+                        class="article-read-more">CONTINUE READING</a>
+                </div>
+
+            </article>
+
+            <article class="article-featured" id="p3">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark>Tripura Lok Sabha Election 2019 Summary</mark></h2>
+                    <p class="article-body"><i>
+                        The 2019 Indian general election were held in India on 11 April and 23 April 2019 to constitute the 17th Lok Sabha.
+
+                    </i></p>
+                    <a href="https://en.wikipedia.org/wiki/2019_Indian_general_election_in_Tripura" class="article-read-more">CONTINUE READING</a>
+                </div>
+            </article>
+
+        </main>
+
+        <aside class="sidebar">
+
+            <div class="sidebar-widget">
+                <h2 class="widget-title">About Tripura</h2>
+                <img src="data:image/jpeg;base64,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" alt="" class="widget-image">
+                <p class="widget-body rc"><p>
+                    Tripura is a hilly state in northeast India, bordered on 3 sides by Bangladesh, and home to a diverse mix of tribal cultures and religious groups. <br>
+                    <b>Area:</b> 10,492 km²<br>
+                    <b>Capital:</b> Agartala<br>
+                    <b>Chief minister:</b> Biplab Kumar Deb<br>
+                    <b>Population:</b> 36.6 lakhs (2012)
+
+
+            </div>
+            <!--GO TO CONTANIER-->
+            <div class="sidebar-widget">
+                <h2 class="widget-title">Go to...</h2>
+                <div class="widget-recent-post">
+                    <a href="#p4" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Recognised Parties in Tripura</h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="#p1" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Quick facts for Tripura Elections</h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="#p2" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Tripura Legislative Assembly (Vidhan Sabha) Elections 2018 Summary</h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="#p3" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Tripura Lok Sabha Election 2019 Summary</h3>
+                    </a>
+                </div>
+
+            </div>
+            <!--Third aside-->
+            <div class="sidebar-widget">
+                <h2 class="widget-title">2018 Tripura Legislative Assembly Elections</h2>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Tripura_2018_assembly_election.png/300px-Tripura_2018_assembly_election.png" alt="" class="widget-image">    
+            </div>
+                  
+            <!--another container-->
+            <div class="sidebar-widget"><a href="https://www.elections.in/tripura/polling-booths/" style="text-decoration: none; color: rgb(16, 33, 90);">
+                <h2 class="widget-title">Tripura Polling Booth</h2></a>
+
+                <div class="widget-recent-post">
+                    <a href="https://www.elections.in/tripura/polling-booths/agartala.html" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Agartala</h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="https://www.elections.in/tripura/polling-booths/bamutia(sc).html" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Bamutia</h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="https://www.elections.in/tripura/polling-booths/charilam(st).html" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Charilam</h3>
+                    </a>
+                </div>
+                <div class="widget-recent-post">
+                    <a href="https://www.elections.in/tripura/polling-booths/dhanpur.html" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Dhanpur</h3>
+                    </a>
+                </div>
+            </div>
+        </aside>
+    </div>
+    <script>
+        function myFunction() {
+            var person = prompt("Comment as", "Roshini Chavan");
+            if (person != null) {
+                var com = document.getElementById("myText").value;
+                var today = new Date();
+                document.getElementById("coml").innerHTML = "<b>" + "Comment posted: <br>" + person + "</b>" + " " + com + "<br>" + "<div class='rc article-body' style='opacity:50%; border:none;padding-left:3%'>" + today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + ',' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds(); "</div>";
+
+                var com = document.getElementById("just").innerHTML = ""
+                document.getElementById("num").innerHTML = "4";
+
+            }
+        }
+    </script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=4ewHTtLY"></script>
+</body>
+
+</html>

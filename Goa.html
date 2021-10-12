@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="chatbotrsvotes"
+  agent-id="91b70d7a-2d4c-4f07-b687-29f908704667"
+  language-code="en"
+  allow="microphone;"
+></df-messenger>
+    <style>
+        .btncom {
+            background-color: #878a87;
+            /* Green */
+            border: none;
+            border-radius: 10px 10px 10px 0px;
+            color: white;
+            font-family: sans-serif;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .btncom:hover {
+            transform: scale3d(0.9, 0.9, 0.9);
+            transition-duration: 2s;
+            background-color: rgb(51, 50, 50);
+            border: none;
+            color: #dde0dd;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+        }
+
+        header {
+            height: 100%
+        }
+
+        .rc {
+            font-family: 'Caveat', cursive;
+            padding-left: 5%;
+            opacity: 70%;
+
+        }
+
+        input[type=text] {
+            width: 270px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+            background-image: url('searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+            transition: width 0.4s ease-in-out;
+        }
+
+        input[type=text]:focus {
+            width: 90%;
+            border-color: #fcfafa;
+
+        }
+
+        .comcon {
+            padding-left: 5%;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            font-size: 1.125rem;
+            font-weight: 300;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .image-full {
+            max-height: 300px;
+            width: 100%;
+            object-fit: cover;
+            margin-bottom: 2em;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: serif;
+            font-weight: 400;
+            color: #143774;
+            margin-top: 0;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        h3 {
+            color: #1792d2;
+        }
+
+        .subtitle {
+            font-weight: 700;
+            color: #1792d2;
+            font-size: .75rem;
+            margin: 0;
+        }
+
+        .article-title {
+            font-size: 1.5rem;
+            padding-left: 5%;
+        }
+
+        .article-read-more,
+        .article-info {
+            font-size: .875rem;
+        }
+
+        .article-read-more {
+            color: #1792d2;
+            text-decoration: none;
+            font-weight: 700;
+            padding-left: 5%;
+            padding-right: 2%;
+        }
+
+        .article-read-more:hover,
+        .article-read-more:focus {
+            color: #143774;
+            text-decoration: underline;
+            transform: rotateX(360deg);
+            transition-duration: 2s;
+
+
+        }
+
+        .sidebar-widget {
+            animation-duration: 3s;
+            animation-name: slidein;
+        }
+
+        @keyframes slidein {
+            from {
+                margin-left: 100%;
+                width: 300%;
+            }
+
+            to {
+                margin-left: 0%;
+                width: 100%;
+            }
+        }
+
+        .article-info {
+            margin: 2em 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
+
+        }
+
+        .container-nav,
+        .container-flex {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header {
+            background: #f8f8f8;
+            text-align: center;
+            padding: 2em 0;
+            margin-bottom: 3em;
+        }
+
+        footer {
+            background: #143774;
+            color: white;
+            text-align: center;
+            padding: .5em 0;
+        }
+
+        .fa-heart {
+            color: red;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: red;
+        }
+
+        strong {
+            font-weight: 700;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        nav li {
+            margin: .5em 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #707070;
+            font-weight: 700;
+            margin: .25em 0;
+        }
+
+        nav a:hover,
+        nav a:focus {
+            color: #1792d2;
+        }
+
+        .dogg {
+            transform: scale3d(0, 0, 0);
+        }
+
+        .dogg:hover {
+            transform: scale3d(1.2, 1.2, 1.2);
+        }
+
+        a.current-page {
+            position: relative;
+            color: #143774;
+        }
+
+        a.current-page:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: rgb(27, 8, 8);
+            visibility: hidden;
+            transform: scaleX(0);
+            transition: all 0.3s ease-in-out;
+        }
+
+        a.current-page:hover:before {
+            visibility: visible;
+            transform: scaleX(1);
+
+        }
+
+        .article-featured {
+            border-bottom: #707070 1px solid;
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            color: darkgray;
+            border-radius: 2px 2px 2px 0px;
+            background-color: #fcfafa;
+            border-radius: 2%;
+        }
+
+        .article-featured:hover {
+
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            transition-duration: 1s;
+            color: black;
+            transform: scale3d(1.009, 1.009, 1.009);
+
+        }
+
+        .article-recent {
+            display: flex;
+            width: 70vw;
+            flex-direction: column;
+            margin-bottom: 2em;
+            border-bottom: #707070 1px solid;
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            color: darkgray;
+            border-radius: 2px 2px 2px 0px;
+            background-color: #fcfafa;
+            border-radius: 2%;
+        }
+
+        .article-recent:hover {
+
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            transition-duration: 1s;
+            color: black;
+            transform: scale3d(1.009, 1.009, 1.009);
+
+        }
+
+        .article-recent-main {
+            order: 2;
+            width: 100%;
+
+        }
+
+        .article-recent-secondary {
+            order: 1;
+        }
+
+        .sidebar-widget {
+            border: 10px solid #efefef;
+            margin-bottom: 2em;
+            padding: 1em;
+        }
+
+        .widget-body:hover {
+            transform: scale3d(1.2, 1.2, 1.2);
+            transition-duration: 1s;
+        }
+
+
+
+        .widget-recent-post-title {
+            font-size: 1rem;
+        }
+
+        .widget-recent-post {
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid #707070;
+            margin-bottom: 1em;
+        }
+
+        .widget-recent-post:last-child {
+            border: 0;
+            margin: 0;
+        }
+
+        .widget-image {
+            order: -1;
+            margin-bottom: .5em;
+        }
+
+        .article-body {
+            padding-left: 5%;
+            padding-right: 2%;
+            text-justify:auto;
+            text-align-last: justify;
+            border-left: 6px solid rgb(119, 116, 116);
+            background-color: #fcfafa;
+
+
+        }
+        .hoverTable{
+            width: 100%;
+            border-collapse: collapse;
+            margin-left: 2%;
+        }
+        .hoverTable tr:hover{
+            background-color: #fcecd0;
+        }
+        #parties {
+         margin-left: 2%;
+         margin-right: 2%;
+         border-collapse: collapse;
+         width: 96%;
+        }
+
+        #parties td,#parties th {
+           border: 2px solid rgb(255, 249, 249);
+           padding: 8px;
+        }
+        
+        #parties td:nth-child(even){background-color: #ffefd7;}
+
+        @media (min-width: 675px) {
+
+            .container-nav,
+            .container-flex {
+                flex-direction: row;
+            }
+
+            .container-nav {
+                align-items: center;
+            }
+
+            main {
+                width: 70%;
+            }
+
+            aside {
+                width: 25%;
+                min-width: 200px;
+                margin-left: 1em;
+            }
+
+            nav ul {
+                flex-direction: row;
+            }
+
+            nav li {
+                margin-left: 2em;
+            }
+
+
+            .article-recent {
+                flex-direction: row;
+                justify-content: space-between;
+
+            }
+
+            .article-recent-main {
+                width: 95%;
+                text-align: justify;
+            }
+
+            .article-recent-secondary {
+                width: 30%;
+            }
+
+            .article-title {
+                order: 99;
+            }
+
+            .article-image {
+                width: 100%;
+                min-height: 200px;
+                object-fit: cover;
+                border-radius: 2% 2% 0% 0%;
+            }
+
+
+            .article-featured {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .article-image {
+                order: -2;
+            }
+
+            .article-info {
+                order: -1;
+            }
+
+            .article-title {
+                order: 0;
+            }
+
+        }
+    .buttonsss{
+        width:20%;
+        padding:1%;
+        border-radius:0px 20px 20px 20px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  
+
+    }
+    .scrollable-menu {
+    height: auto;
+    max-height: 300px;
+    overflow-x: hidden;
+}
+    </style>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+    
+    <title>RSvotes | Goa </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    </head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">RSvotes</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="aboutparties.html">About parties</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="vote.php">Vote Now!</a></li>
+                    </li>
+                        
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+
+    <header>
+        <div class="container container-nav">
+            <div class="site-title" style="text-align: center;">
+                <h1>Goa Election</h1>
+                <p class="subtitle" ><h3>Results & Updates<h3</p>
+            </div>
+            
+            <nav>
+
+                <ul>
+                    <li><a href="aboutparties.html">National<br> Parties</a></li>
+                   <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false" class="current-page">
+                        State Parties
+                    </a>
+                    <ul class="dropdown-menu scrollable-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="andhrapradesh.html">Andhra Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="arunachalpradhesh.html">Arunachal Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="assam.html">Assam Election</a></li>
+                        <li><a class="dropdown-item" href="bihar.html">Bihar Election</a></li>
+                        <li><a class="dropdown-item" href="chhattisgarh.html">Chhattisgarh Election</a></li>
+                        <li><a class="dropdown-item" href="delhi.html">Delhi Election</a></li>
+                        <li><a class="dropdown-item" href="Goa.html">Goa Election</a></li>
+                        <li><a class="dropdown-item" href="gujarat.html">Gujarat Election</a></li>
+                        <li><a class="dropdown-item" href="haryana.html">Haryana Election</a></li>
+                        <li><a class="dropdown-item" href="himachal.html">Himachal Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="jharkhand.html">Jharkhand Election</a></li>
+                        <li><a class="dropdown-item" href="karnataka.html">Karnataka Election</a></li>
+                        <li><a class="dropdown-item" href="kerala.html">Kerala Election</a></li>
+                        <li><a class="dropdown-item" href="madhyapradesh.html">Madhya Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="maharashtra.html">Maharashtra Election</a></li>
+                        <li><a class="dropdown-item" href="manipur.html">Manipur Election</a></li>
+                        <li><a class="dropdown-item" href="meghalaya.html">Meghalaya Election</a></li>
+                        <li><a class="dropdown-item" href="mizoram.html">Mizoram Election</a></li>
+                        <li><a class="dropdown-item" href="nagaland.html">Nagaland Election</a></li>
+                        <li><a class="dropdown-item" href="orissa.html">Odisha Election</a></li>
+                        <li><a class="dropdown-item" href="punjab.html">Punjab Election</a></li>
+                        <li><a class="dropdown-item" href="rajasthan.html">Rajasthan Election</a></li>
+                        <li><a class="dropdown-item" href="sikkim.html">Sikkim Election</a></li>
+                        <li><a class="dropdown-item" href="tamilnadu.html">Tamil Nadu Election</a></li>
+                        <li><a class="dropdown-item" href="telangana.html">Telangana Election</a></li>
+                        <li><a class="dropdown-item" href="tripura.html">Tripura Election</a></li>
+                        <li><a class="dropdown-item" href="uttar pradesh.html">Uttar Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="uttarakhand.html">Uttarakhand Election</a></li>
+                        <li><a class="dropdown-item" href="west bengal.html">West Bengal Election</a></li>
+                    </ul>
+                </li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container container-flex">
+
+        <main role="main">
+            <article class="article-featured" id="p4">
+                <h2 class="article-title"><mark>Recognised Parties in Goa</mark></h2>
+                
+             <p class="article-body"><i>
+                <table  id="parties">
+                    <tr>
+                        <th>Name:</th>
+                        <td><a href="https://en.wikipedia.org/wiki/Goa_Forward_Party" style="text-decoration: none; color: #f59241;">Goa Forward Party</a></td>
+                        <td ><a href="Maharashtrawadi Gomantak Party" style="text-decoration: none; color: #f59241;">Maharashtrawadi Gomantak Party</a></td>
+                    </tr>
+
+                    </tr>
+                    <tr>
+                      <th>Abbrivation:</th>
+                      <td>GFP</td>
+                      <td>MGP</td>
+                    </tr>
+                    <tr>
+                      <th>Foundation year:</th>
+                      <td>2016</td>
+                      <td>1963</td>
+                    </tr>
+                    <tr>
+                        <th>Current Leader(s):</th>
+                        <td><a href="https://en.wikipedia.org/wiki/Vijai_Sardesai" style="text-decoration: none; color: #f59241;">Vijai Sardesai</a></td>
+                        <td><a href="https://en.wikipedia.org/wiki/Deepak_Dhavalikar" style="text-decoration: none; color: #f59241;">Deepak Dhavalikar</a></td>
+                    
+                    </tr>
+                    <tr>
+                        <th>Symbol:</th>
+                        <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Indian_election_symbol_Coconut.svg/150px-Indian_election_symbol_Coconut.svg.png"></td>
+                        <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Indian_Election_Symbol_Lion.png/150px-Indian_Election_Symbol_Lion.png"></td>
+                  
+                    </tr>
+                    
+                  </table> 
+                  
+             </i></p></a>
+             
+                <p id="coml" class="rc"><i></i></p>
+            </article>
+
+        
+            <article class="article-featured">
+                <h2 class="article-title"><mark>About Goa Elections</mark></h2>
+              <p class="article-body"><i>
+                Legislative Assembly elections will be held in Goa in month of February 2022 to elect 40 members of the Goa Legislative Assembly.
+                 The term of current assembly elected in 2017 will expire on 15 March
+              </i></p></a>
+
+                <a href="https://en.wikipedia.org/wiki/2022_Goa_Legislative_Assembly_election" class="article-read-more">CONTINUE READING</a>
+                
+                <p id="coml" class="rc"><i></i></p>
+            </article>
+             <!-- Facts table-->
+            <article class="article-featured" id="p1">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark>Quick facts for Goa Elections</mark></h2>
+            
+                <a href="#" style="text-decoration: none;  color: rgb(80, 79, 79);"> <p class="article-body">
+                <table class="hoverTable" style="text-align:left;">
+                    <tr>
+                      <td width="330">Parliamentary Constituencies</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>Assembly Constituencies</td>
+                      <td>40</td>
+                    </tr>
+                    <tr>
+                      <td>Ruling Party</td>
+                      <td>Bharatiya Janata Party</td>
+                    </tr>
+                    <tr>
+                      <td>Opposition Party</td>
+                      <td>Indian National Congress</td>
+                    </tr>
+                    <tr>
+                        <td>Cheif Minister</td>
+                        <td>Pramod Sawant</td>
+                    </tr>
+                    <tr>
+                        <td>Governor</td>
+                        <td>Mridula Sinha</td>
+                    </tr>
+                    <tr>
+                        <td>Chief Electoral Officer</td>
+                        <td>N.S Navti</td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>Chief Electoral Office Althino Panaji Goa</td>
+                    </tr>
+            
+                  </table></p></a>
+                </div>  
+            </article>
+
+
+            <article class="article-featured" id="p2">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark>Goa Legislative Assembly (Vidhan Sabha) Elections 2017 Summary</mark></h2>
+                    <p class="article-body"><i>
+                        The Congress has bagged 15 seats and is leading in 2 seats while the BJP won 13 seats, marginally lagging 
+                        behind in the house of 40-members. Aam Aadmi party fought the Goa elections for the first time but failed 
+                        to open an account in the state. The MGP+ won four seats. Since no party has secured a simple majority it 
+                        would be the Governors prerogative to call a party of his choice to form the government. In this situation, 
+                        a coalition government is imminent and so the role of MGP and independents would be crucial at the time of 
+                        formation of the government.
+                    </i></p>
+                    <a href="https://www.elections.in/goa/assembly-constituencies/2017-election-results.html"
+                        class="article-read-more">CONTINUE READING</a>
+                </div>
+
+            </article>
+
+            <article class="article-featured" id="p3">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark>Goa Lok Sabha Election 2019 Summary</mark></h2>
+                    <p class="article-body"><i>
+                        In 2019, the BJP is set to return to power at the Centre after a sweeping win in the 2019 Lok Sabha election , 
+                        armed with a bigger mandate than in the 2014 General Election. The party - led by the Prime Minister Narendra 
+                        Modi and BJP President Amit Shah duo has secured 303 seats in the 17th Lok Sabha. Meanwhile, the Congress, the 
+                        main Opposition party, managed to increase its vote share from 2014 only by a handful of votes, with a final tally of 52 seats. 
+                        There will be no Leader of Opposition in the upcoming Lower House for a second consecutive term.
+
+
+                    </i></p>
+                    <a href="https://en.wikipedia.org/wiki/2019_Indian_general_election_in_Goa" class="article-read-more">CONTINUE READING</a>
+                </div>
+            </article>
+
+        </main>
+
+        <aside class="sidebar">
+
+            <div class="sidebar-widget">
+                <h2 class="widget-title">About Goa</h2>
+                <img src="data:image/jpeg;base64,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" alt="" class="widget-image">
+                <p class="widget-body rc"><p>
+                    Goa is a state in western India with coastlines stretching along the Arabian Sea. Its long history
+                     as a Portuguese colony prior to 1961 is evident in its preserved 17th-century churches and the area’s tropical spice plantations. <br>
+                    <b>Area:</b>3,702 km²<br>
+                    <b>Capital:</b>Panaji (Executive Branch)<br>
+                    <b>Chief minister:</b>Pramod Sawant<br>
+                    <b>Population:</b>18.2 lakhs (2012)
+
+
+            </div>
+            <!--GO TO CONTANIER-->
+            <div class="sidebar-widget">
+                <h2 class="widget-title">Go to...</h2>
+                <div class="widget-recent-post">
+                    <a href="#p4" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Recognised Parties in Goa </h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="#p1" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Quick facts for Goa Elections</h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="#p2" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Goa Legislative Assembly (Vidhan Sabha) Elections 2017 Summary</h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="#p3" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Goa Lok Sabha Election 2019 Summary</h3>
+                    </a>
+                </div>
+
+            </div>
+            <!--Third aside-->
+            <div class="sidebar-widget">
+                <h2 class="widget-title">2017 Goa Legislative Assembly Elections</h2>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/2017_Goa_assembly_elections.png/450px-2017_Goa_assembly_elections.png" alt="" class="widget-image">    
+            </div>
+                  
+            <!--another container-->
+            <div class="sidebar-widget"><a href="https://www.elections.in/goa/polling-booth/" style="text-decoration: none; color: rgb(16, 33, 90);">
+                <h2 class="widget-title">GOA POLLING BOOTHS
+                </h2></a>
+
+                <div class="widget-recent-post">
+                    <a href="https://www.elections.in/goa/polling-booth/aldona.html" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Aldona </h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="https://www.elections.in/goa/polling-booth/bicholim.html" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Bicholim </h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="https://www.elections.in/goa/polling-booth/calangute.html" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Calanute</h3>
+                    </a>
+                </div>
+            </div>
+        </aside>
+    </div>
+    <script>
+        function myFunction() {
+            var person = prompt("Comment as", "Roshini Chavan");
+            if (person != null) {
+                var com = document.getElementById("myText").value;
+                var today = new Date();
+                document.getElementById("coml").innerHTML = "<b>" + "Comment posted: <br>" + person + "</b>" + " " + com + "<br>" + "<div class='rc article-body' style='opacity:50%; border:none;padding-left:3%'>" + today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + ',' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds(); "</div>";
+
+                var com = document.getElementById("just").innerHTML = ""
+                document.getElementById("num").innerHTML = "4";
+
+            }
+        }
+    </script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=4ewHTtLY"></script>
+</body>
+
+</html>

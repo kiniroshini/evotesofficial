@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="chatbotrsvotes"
+  agent-id="91b70d7a-2d4c-4f07-b687-29f908704667"
+  language-code="en"
+  allow="microphone;"
+></df-messenger>
+    <style>
+        .btncom {
+            background-color: #878a87;
+            /* Green */
+            border: none;
+            border-radius: 10px 10px 10px 0px;
+            color: white;
+            font-family: sans-serif;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .btncom:hover {
+            transform: scale3d(0.9, 0.9, 0.9);
+            transition-duration: 2s;
+            background-color: rgb(51, 50, 50);
+            border: none;
+            color: #dde0dd;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+        }
+
+        header {
+            height: 100%
+        }
+
+        .rc {
+            font-family: 'Caveat', cursive;
+            padding-left: 5%;
+            opacity: 70%;
+
+        }
+
+        input[type=text] {
+            width: 270px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+            background-image: url('searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+            transition: width 0.4s ease-in-out;
+        }
+
+        input[type=text]:focus {
+            width: 90%;
+            border-color: #fcfafa;
+
+        }
+
+        .comcon {
+            padding-left: 5%;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            font-size: 1.125rem;
+            font-weight: 300;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .image-full {
+            max-height: 300px;
+            width: 100%;
+            object-fit: cover;
+            margin-bottom: 2em;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: serif;
+            font-weight: 400;
+            color: #143774;
+            margin-top: 0;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        h3 {
+            color: #1792d2;
+        }
+
+        .subtitle {
+            font-weight: 700;
+            color: #1792d2;
+            font-size: .75rem;
+            margin: 0;
+        }
+
+        .article-title {
+            font-size: 1.5rem;
+            padding-left: 5%;
+        }
+
+        .article-read-more,
+        .article-info {
+            font-size: .875rem;
+        }
+
+        .article-read-more {
+            color: #1792d2;
+            text-decoration: none;
+            font-weight: 700;
+            padding-left: 5%;
+            padding-right: 2%;
+        }
+
+        .article-read-more:hover,
+        .article-read-more:focus {
+            color: #143774;
+            text-decoration: underline;
+            transform: rotateX(360deg);
+            transition-duration: 2s;
+
+
+        }
+
+        .sidebar-widget {
+            animation-duration: 3s;
+            animation-name: slidein;
+        }
+
+        @keyframes slidein {
+            from {
+                margin-left: 100%;
+                width: 300%;
+            }
+
+            to {
+                margin-left: 0%;
+                width: 100%;
+            }
+        }
+
+        .article-info {
+            margin: 2em 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
+
+        }
+
+        .container-nav,
+        .container-flex {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header {
+            background: #f8f8f8;
+            text-align: center;
+            padding: 2em 0;
+            margin-bottom: 3em;
+        }
+
+        footer {
+            background: #143774;
+            color: white;
+            text-align: center;
+            padding: .5em 0;
+        }
+
+        .fa-heart {
+            color: red;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: red;
+        }
+
+        strong {
+            font-weight: 700;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        nav li {
+            margin: .5em 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #707070;
+            font-weight: 700;
+            margin: .25em 0;
+        }
+
+        nav a:hover,
+        nav a:focus {
+            color: #1792d2;
+        }
+
+        .dogg {
+            transform: scale3d(0, 0, 0);
+        }
+
+        .dogg:hover {
+            transform: scale3d(1.2, 1.2, 1.2);
+        }
+
+        a.current-page {
+            position: relative;
+            color: #143774;
+        }
+
+        a.current-page:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: rgb(27, 8, 8);
+            visibility: hidden;
+            transform: scaleX(0);
+            transition: all 0.3s ease-in-out;
+        }
+
+        a.current-page:hover:before {
+            visibility: visible;
+            transform: scaleX(1);
+
+        }
+
+        .article-featured {
+            border-bottom: #707070 1px solid;
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            color: darkgray;
+            border-radius: 2px 2px 2px 0px;
+            background-color: #fcfafa;
+            border-radius: 2%;
+        }
+
+        .article-featured:hover {
+
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            transition-duration: 1s;
+            color: black;
+            transform: scale3d(1.009, 1.009, 1.009);
+
+        }
+
+        .article-recent {
+            display: flex;
+            width: 70vw;
+            flex-direction: column;
+            margin-bottom: 2em;
+            border-bottom: #707070 1px solid;
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            color: darkgray;
+            border-radius: 2px 2px 2px 0px;
+            background-color: #fcfafa;
+            border-radius: 2%;
+        }
+
+        .article-recent:hover {
+
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            transition-duration: 1s;
+            color: black;
+            transform: scale3d(1.009, 1.009, 1.009);
+
+        }
+
+        .article-recent-main {
+            order: 2;
+
+        }
+
+        .article-recent-secondary {
+            order: 1;
+        }
+
+        .sidebar-widget {
+            border: 10px solid #efefef;
+            margin-bottom: 2em;
+            padding: 1em;
+        }
+
+        .widget-body:hover {
+            transform: scale3d(1.2, 1.2, 1.2);
+            transition-duration: 1s;
+        }
+
+
+
+        .widget-recent-post-title {
+            font-size: 1rem;
+        }
+
+        .widget-recent-post {
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid #707070;
+            margin-bottom: 1em;
+        }
+
+        .widget-recent-post:last-child {
+            border: 0;
+            margin: 0;
+        }
+
+        .widget-image {
+            order: -1;
+            margin-bottom: .5em;
+        }
+
+        .article-body {
+            padding-left: 5%;
+            padding-right: 2%;
+            text-justify: newspaper;
+            border-left: 6px solid rgb(119, 116, 116);
+            background-color: #fcfafa;
+
+
+        }
+
+
+
+        @media (min-width: 675px) {
+
+            .container-nav,
+            .container-flex {
+                flex-direction: row;
+            }
+
+            .container-nav {
+                align-items: center;
+            }
+
+            main {
+                width: 70%;
+            }
+
+            aside {
+                width: 25%;
+                min-width: 200px;
+                margin-left: 1em;
+            }
+
+            nav ul {
+                flex-direction: row;
+            }
+
+            nav li {
+                margin-left: 2em;
+            }
+
+
+            .article-recent {
+                flex-direction: row;
+                justify-content: space-between;
+
+            }
+
+            .article-recent-main {
+                width: 68%;
+            }
+
+            .article-recent-secondary {
+                width: 30%;
+            }
+
+            .article-title {
+                order: 99;
+            }
+
+            .article-image {
+                width: 100%;
+                min-height: 200px;
+                object-fit: cover;
+                border-radius: 2% 2% 0% 0%;
+            }
+
+
+            .article-featured {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .article-image {
+                order: -2;
+            }
+
+            .article-info {
+                order: -1;
+            }
+
+            .article-title {
+                order: 0;
+            }
+
+        }
+    .buttonsss{
+        width:20%;
+        padding:1%;
+        border-radius:0px 20px 20px 20px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  
+
+    }
+    .scrollable-menu {
+    height: auto;
+    max-height: 300px;
+    overflow-x: hidden;
+}
+    </style>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+
+    <title>RSvotes | National Parties</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    </head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">RSvotes</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="aboutparties.html">About parties</a>
+                    </li>      
+                    <li class="nav-item">
+                        <a class="nav-link" href="registration.php">Vote Now!</a></li>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+        -->
+
+
+    <header>
+        <div class="container container-nav">
+            <div class="site-title">
+                <h1>You have got to vote, vote, vote, vote. That is it; that is the way we move forward.</h1>
+                <p class="subtitle">  Michelle Obama</p>
+            </div>
+            
+            <nav>
+
+                <ul>
+                    <li><a href="aboutparties.html">National Parties</a></li>
+                   <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false" class="current-page">
+                        State Parties
+                    </a>
+                    <ul class="dropdown-menu scrollable-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="andhrapradesh.html">Andhra Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="arunachalpradesh.html">Arunachal Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="assam.html">Assam Election</a></li>
+                        <li><a class="dropdown-item" href="bihar.html">Bihar Election</a></li>
+                        <li><a class="dropdown-item" href="chhatisgarh.html">Chhattisgarh Election</a></li>
+                        <li><a class="dropdown-item" href="delhi.html">Delhi Election</a></li>
+                        <li><a class="dropdown-item" href="Goa.html">Goa Election</a></li>
+                        <li><a class="dropdown-item" href="gujarat.html">Gujarat Election</a></li>
+                        <li><a class="dropdown-item" href="haryana.html">Haryana Election</a></li>
+                        <li><a class="dropdown-item" href="himachal.html">Himachal Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="jharkhand.html">Jharkhand Election</a></li>
+                        <li><a class="dropdown-item" href="karnataka.html">Karnataka Election</a></li>
+                        <li><a class="dropdown-item" href="kerala.html">Kerala Election</a></li>
+                        <li><a class="dropdown-item" href="madhyapradesh.html">Madhya Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="maharashtra.html">Maharashtra Election</a></li>
+                        <li><a class="dropdown-item" href="manipur.html">Manipur Election</a></li>
+                        <li><a class="dropdown-item" href="meghalaya.html">Meghalaya Election</a></li>
+                        <li><a class="dropdown-item" href="mizoram.html">Mizoram Election</a></li>
+                        <li><a class="dropdown-item" href="nagaland.html">Nagaland Election</a></li>
+                        <li><a class="dropdown-item" href="orissa.html">Odisha Election</a></li>
+                        <li><a class="dropdown-item" href="punjab.html">Punjab Election</a></li>
+                        <li><a class="dropdown-item" href="rajasthan.html">Rajasthan Election</a></li>
+                        <li><a class="dropdown-item" href="sikkim.html">Sikkim Election</a></li>
+                        <li><a class="dropdown-item" href="tamilnadu.html">Tamil Nadu Election</a></li>
+                        <li><a class="dropdown-item" href="telangana.html">Telangana Election</a></li>
+                        <li><a class="dropdown-item" href="tripura.html">Tripura Election</a></li>
+                        <li><a class="dropdown-item" href="uttar pradesh.html">Uttar Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="uttarakhand.html">Uttarakhand Election</a></li>
+                        <li><a class="dropdown-item" href="west bengal.html">West Bengal Election</a></li>
+                    </ul>
+                </li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container container-flex">
+
+        <main role="main">
+
+            <article class="article-featured">
+                <h2 class="article-title"><mark>Bharatiya Janata Party</mark></h2>
+                <img src="https://mcmscache.epapr.in/post_images/website_350/post_15660256/thumb.png" alt="greenery pic"
+                    class="article-image">
+                <p class="article-info">6 April 1980 | <span id="num"> Jagat Prakash Nadda</p>
+             <a href="#" style="text-decoration: none;  color: rgb(80, 79, 79);"> <p class="article-body"><i>Indian People's Party; abbr. BJP) is one of two major political parties in
+                        India, along with the Indian National Congress.[36] It is the current ruling political party of
+                        the Republic of India, since 2014.[37] The BJP is a right-wing party, and its policy has
+                        historically reflected Hindu nationalist positions.[38][39] It has close ideological and
+                        organisational links to the much older Rashtriya Swayamsevak Sangh (RSS).[40] As of 2019, it is
+                        the country's largest political party in terms of representation in the national parliament and
+                        state assemblies and is by far the world's largest party in terms of primary membership, with
+                        the second largest party, the Communist Party of China, having about half the registered members
+                        of the BJP....</i></p></a>
+
+
+                <button
+                    onclick="responsiveVoice.speak('BJP is one of two major political parties in India, along with the Indian National Congress. It is the current ruling political party of the Republic of India, since 2014. The BJP is a right-wing party, and its policy has historically reflected Hindu nationalist positions.');"
+                    type="button" value="Play"  class="btncom" style="width:30%">Play audio</button>
+                    <button
+                    onclick="responsiveVoice.speak('');"
+                    type="button" value="Stop" class="btncom" style="width:30%">Stop audio</button>
+
+                <a href="https://en.wikipedia.org/wiki/Bharatiya_Janata_Party" class="article-read-more">CONTINUE READING</a>
+                
+                <p id="coml" class="rc"><i></i></p>
+            </article>
+
+
+            <article class="article-recent" id="p1">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark>All India Trinamool Congress</mark></h2>
+                    <p class="article-body"><i>After being a member of the Indian National Congress for over 26 years,
+                            Mamata Banerjee established "Trinamool Congress", which was registered with the Election
+                            Commission of India during mid-December 1997. The Election Commission allotted to the party
+                            an exclusive symbol of Jora Ghas Phul. On 2 September 2016 election commission recognized
+                            AITC as a national political party....</i></p>
+                    <a href="https://en.wikipedia.org/wiki/All_India_Trinamool_Congress"
+                        class="article-read-more">CONTINUE READING</a>
+
+                </div>
+
+                <div class="article-recent-secondary">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/All_India_Trinamool_Congress_symbol.svg/150px-All_India_Trinamool_Congress_symbol.svg.png"
+                        alt="" class="article-image">
+                    <p class="article-info"> 1 January 1998 | Mamata Banerjee</p>
+
+                </div>
+               
+            </article>
+
+
+            <article class="article-recent" id="p2">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark>Bahujan Samaj Party</mark></h2>
+                    <p class="article-body"><i>
+
+                            The Bahujan Samaj Party was founded on the birth anniversary of B. R. Ambedkar, 14 April
+                            1984, by Kanshi Ram,[23] who named former school teacher, Mayawati, as his successor of BSP
+                            in 2001.[24] The party's power grew quickly with seats in the Legislative Assembly of Uttar
+                            Pradesh and the Lok Sabha, the lower house of the Parliament of India. In 1993, following
+                            the assembly elections, Mayawati formed a coalition with Samajwadi Party president Mulayam
+                            Singh Yadav as Chief Minister. On 2 June 1995, she withdrew support from his government,
+                            which led to a major incident where Yadav was accused of sending his zealots to keep her
+                            party legislators hostage at a Lucknow guest house and shout casteist abuses at her....</i>
+                    </p>
+                    <a href="https://en.wikipedia.org/wiki/Bahujan_Samaj_Party" class="article-read-more">CONTINUE
+                        READING</a>
+
+                </div>
+
+                <div class="article-recent-secondary">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Indian_Election_Symbol_Elephant.png/225px-Indian_Election_Symbol_Elephant.png"
+                        alt="" class="article-image">
+                    <p class="article-info"> 14 April 1984 | Mayavati</p>
+
+                </div>
+
+            </article>
+
+
+
+            <article class="article-recent" id="p3">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark> Communist Party of India</mark></h2>
+                    <p class="article-body"><i>Foundation Conference of Communist Party of India
+                            The Communist Party of India was formed on 26 December 1925 at the first Party Conference in
+                            Kanpur, which was then known as Cawnpore. S.V. Ghate was the first General Secretary of CPI.
+                            There were many communist groups formed by Indians with the help of foreigners in different
+                            parts of the world, Tashkent group of Contacts were made with Anushilan and Jugantar the
+                            groups in Bengal, and small communist groups were formed in Bombay (led by S.A. Dange),
+                            Madras (led by Singaravelu Chettiar), United Provinces (led by Shaukat Usmani), Punjab,
+                            Sindh (led by Ghulam Hussain) and Bengal (led by Muzaffar Ahmed)....</i></p>
+                    <a href="https://en.wikipedia.org/wiki/Communist_Party_of_India" class="article-read-more">CONTINUE
+                        READING</a>
+                </div>
+
+                <div class="article-recent-secondary">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Indian_Election_Symbol_Ears_of_Corn_and_Sickle.png/225px-Indian_Election_Symbol_Ears_of_Corn_and_Sickle.png"
+                        alt="" class="article-image">
+                    <p class="article-info"> 26 December 1925 | D. Raja</p>
+                </div>
+            </article>
+
+
+            <article class="article-recent" id="p4">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark>Communist Party of India (Marxist)</mark></h2>
+                    <p class="article-body"><i>
+
+                            The Communist Party of India (Marxist) (abbr. CPI(M)) is a communist political party in
+                            India.[3] It is one of the national parties of India.[5] The party emerged from a split from
+                            the Communist Party of India in 1964. The CPI(M) was formed in Calcutta from 31 October to 7
+                            November 1964....</i>
+                    </p>
+                    <a href="https://en.wikipedia.org/wiki/Communist_Party_of_India_(Marxist)"
+                        class="article-read-more">CONTINUE
+                        READING</a>
+
+                </div>
+
+                <div class="article-recent-secondary">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Indian_Election_Symbol_Hammer_Sickle_and_Star.png/150px-Indian_Election_Symbol_Hammer_Sickle_and_Star.png"
+                        alt="" class="article-image">
+                    <p class="article-info"> 7 November 1964 | Sitaram Yechury</p>
+
+                </div>
+
+            </article>
+
+
+            <article class="article-recent" id="p5">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark>Indian National Congress</mark></h2>
+                    <p class="article-body"><i>
+
+                            The Indian National Congress (often called the Congress Party or simply Congress, abbr. INC)
+                            is one of the two major political parties in India, along with its main rival the Bharatiya
+                            Janata Party.[22] The Congress is a "big tent" party whose platform is generally considered
+                            in the centre in its ideological orientation, of Indian politics.[23][11][15] On social
+                            issues, it advocates secular policies that encourage equal opportunity, right to health,
+                            civil liberty and welfare of weaker sections and minorities, with support for a mixed
+                            economy.[24] As of 2021, in the 17 general elections since independence, it has won an
+                            outright majority on seven occasions and has led the ruling coalition a further three times,
+                            heading the central government for more than 54 years. There have been six Congress Prime
+                            Ministers, the first being Jawaharlal Nehru (1947–1964), and the most recent Manmohan Singh
+                            (2004–2014)....</i>
+                    </p>
+                    <a href="https://en.wikipedia.org/wiki/Indian_National_Congress" class="article-read-more">CONTINUE
+                        READING</a>
+
+                </div>
+
+                <div class="article-recent-secondary">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Hand_INC.svg/261px-Hand_INC.svg.png"
+                        alt="" class="article-image">
+                    <p class="article-info"> 28 December 1885 | Sonia Gandhi</p>
+
+                </div>
+
+            </article>
+
+
+            <article class="article-recent" id="p6">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark>National People's Party</mark></h2>
+                    <p class="article-body"><i>
+                            The National People's Party is a national-level political party in India, though its
+                            influence is mostly concentrated in the state of Meghalaya. The party was founded by P A
+                            Sangma after his expulsion from the NCP in July 2012. It was accorded national party status
+                            on 7 June 2019. It is the first political party from Northeastern India to have attained
+                            this status....</i>
+                    </p>
+                    <a href="https://en.wikipedia.org/wiki/National_People%27s_Party_(India)"
+                        class="article-read-more">CONTINUE
+                        READING</a>
+
+                </div>
+
+                <div class="article-recent-secondary">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Indian_Election_Symbol_Book.svg/150px-Indian_Election_Symbol_Book.svg.png"
+                        alt="" class="article-image">
+                    <p class="article-info"> 6 January 2013 | Conrad Sangma</p>
+
+                </div>
+
+            </article>
+
+
+            <article class="article-recent" id="p7">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark>Nationalist Congress Party</mark></h2>
+                    <p class="article-body"><i>
+                            The NCP was formed on 25 May 1999, by Sharad Pawar, P. A. Sangma, and Tariq Anwar after they
+                            were expelled from the Indian National Congress (INC) on 20 May 1999, for disputing the
+                            right of Italian-born Sonia Gandhi to lead the party.[7][8][9] At the time of formation of
+                            the NCP, the Indian Congress (Socialist) party merged with the new party....</i>
+                    </p>
+                    <a href="https://en.wikipedia.org/wiki/Nationalist_Congress_Party"
+                        class="article-read-more">CONTINUE
+                        READING</a>
+
+                </div>
+
+                <div class="article-recent-secondary">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/28/Nationalist_Congress_Party_Election_Symbol.png"
+                        alt="" class="article-image">
+                    <p class="article-info"> 10 June 1999 | Sharad Pawar</p>
+
+                </div>
+
+            </article>
+
+        </main>
+
+        <aside class="sidebar">
+
+            <div class="sidebar-widget">
+                <h2 class="widget-title">About India</h2>
+                <img src="https://i.ytimg.com/vi/LRoIUjLD2Dc/maxresdefault.jpg" alt="" class="widget-image">
+                <p class="widget-body rc">India, officially the Republic of India, is a country in South Asia. It is the
+                    second-most populous country, the seventh-largest country by land area, and the most populous
+                    democracy in the world.</p>
+            </div>
+            
+            <div class="sidebar-widget">
+                <h2 class="widget-title">Go to...</h2>
+
+                <div class="widget-recent-post">
+                    <a href="#p1" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">All India Trinamool Congress</h3>
+                    </a>
+                    <img src="img/food.jpg" alt="" class="widget-image">
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="#p2" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Bahujan Samaj Party</h3>
+                    </a>
+                    <img src="img/work.jpg" alt="" class="widget-image">
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="#p3" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Communist Party of India</h3>
+                    </a>
+                    <img src="img/work.jpg" alt="" class="widget-image">
+                </div>
+
+
+                <div class="widget-recent-post">
+                    <a href="#p4" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Communist Party of India (Marxist)</h3>
+                    </a>
+                    <img src="img/food.jpg" alt="" class="widget-image">
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="#p5" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Indian National Congress</h3>
+                    </a>
+                    <img src="img/food.jpg" alt="" class="widget-image">
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="#p6" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">National People's Party</h3>
+                    </a>
+                    <img src="img/food.jpg" alt="" class="widget-image">
+                </div>
+
+
+                <div style="transition-timing-function: ease-out;">
+                    <a href="#p7" style="text-decoration: none;  scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Nationalist Congress Party</h3>
+                    </a>
+                    <img src="img/deco.jpg" alt="" class="widget-image">
+                </div>
+
+            </div>
+
+        </aside>
+    </div>
+    <script>
+        function myFunction() {
+            var person = prompt("Comment as", "Roshini Chavan");
+            if (person != null) {
+                var com = document.getElementById("myText").value;
+                var today = new Date();
+                document.getElementById("coml").innerHTML = "<b>" + "Comment posted: <br>" + person + "</b>" + " " + com + "<br>" + "<div class='rc article-body' style='opacity:50%; border:none;padding-left:3%'>" + today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + ',' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds(); "</div>";
+
+                var com = document.getElementById("just").innerHTML = ""
+                document.getElementById("num").innerHTML = "4";
+
+            }
+        }
+    </script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=4ewHTtLY"></script>
+</body>
+
+</html>

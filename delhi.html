@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="chatbotrsvotes"
+  agent-id="91b70d7a-2d4c-4f07-b687-29f908704667"
+  language-code="en"
+  allow="microphone;"
+></df-messenger>
+    <style>
+        .btncom {
+            background-color: #878a87;
+            /* Green */
+            border: none;
+            border-radius: 10px 10px 10px 0px;
+            color: white;
+            font-family: sans-serif;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .btncom:hover {
+            transform: scale3d(0.9, 0.9, 0.9);
+            transition-duration: 2s;
+            background-color: rgb(51, 50, 50);
+            border: none;
+            color: #dde0dd;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+        }
+
+        header {
+            height: 100%
+        }
+
+        .rc {
+            font-family: 'Caveat', cursive;
+            padding-left: 5%;
+            opacity: 70%;
+
+        }
+
+        input[type=text] {
+            width: 270px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+            background-image: url('searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+            transition: width 0.4s ease-in-out;
+        }
+
+        input[type=text]:focus {
+            width: 90%;
+            border-color: #fcfafa;
+
+        }
+
+        .comcon {
+            padding-left: 5%;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            font-size: 1.125rem;
+            font-weight: 300;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .image-full {
+            max-height: 300px;
+            width: 100%;
+            object-fit: cover;
+            margin-bottom: 2em;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: serif;
+            font-weight: 400;
+            color: #143774;
+            margin-top: 0;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        h3 {
+            color: #1792d2;
+        }
+
+        .subtitle {
+            font-weight: 700;
+            color: #1792d2;
+            font-size: .75rem;
+            margin: 0;
+        }
+
+        .article-title {
+            font-size: 1.5rem;
+            padding-left: 5%;
+        }
+
+        .article-read-more,
+        .article-info {
+            font-size: .875rem;
+        }
+
+        .article-read-more {
+            color: #1792d2;
+            text-decoration: none;
+            font-weight: 700;
+            padding-left: 5%;
+            padding-right: 2%;
+        }
+
+        .article-read-more:hover,
+        .article-read-more:focus {
+            color: #143774;
+            text-decoration: underline;
+            transform: rotateX(360deg);
+            transition-duration: 2s;
+
+
+        }
+
+        .sidebar-widget {
+            animation-duration: 3s;
+            animation-name: slidein;
+        }
+
+        @keyframes slidein {
+            from {
+                margin-left: 100%;
+                width: 300%;
+            }
+
+            to {
+                margin-left: 0%;
+                width: 100%;
+            }
+        }
+
+        .article-info {
+            margin: 2em 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
+
+        }
+
+        .container-nav,
+        .container-flex {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header {
+            background: #f8f8f8;
+            text-align: center;
+            padding: 2em 0;
+            margin-bottom: 3em;
+        }
+
+        footer {
+            background: #143774;
+            color: white;
+            text-align: center;
+            padding: .5em 0;
+        }
+
+        .fa-heart {
+            color: red;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: red;
+        }
+
+        strong {
+            font-weight: 700;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        nav li {
+            margin: .5em 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #707070;
+            font-weight: 700;
+            margin: .25em 0;
+        }
+
+        nav a:hover,
+        nav a:focus {
+            color: #1792d2;
+        }
+
+        .dogg {
+            transform: scale3d(0, 0, 0);
+        }
+
+        .dogg:hover {
+            transform: scale3d(1.2, 1.2, 1.2);
+        }
+
+        a.current-page {
+            position: relative;
+            color: #143774;
+        }
+
+        a.current-page:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: rgb(27, 8, 8);
+            visibility: hidden;
+            transform: scaleX(0);
+            transition: all 0.3s ease-in-out;
+        }
+
+        a.current-page:hover:before {
+            visibility: visible;
+            transform: scaleX(1);
+
+        }
+
+        .article-featured {
+            border-bottom: #707070 1px solid;
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            color: darkgray;
+            border-radius: 2px 2px 2px 0px;
+            background-color: #fcfafa;
+            border-radius: 2%;
+        }
+
+        .article-featured:hover {
+
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            transition-duration: 1s;
+            color: black;
+            transform: scale3d(1.009, 1.009, 1.009);
+
+        }
+
+        .article-recent {
+            display: flex;
+            width: 70vw;
+            flex-direction: column;
+            margin-bottom: 2em;
+            border-bottom: #707070 1px solid;
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            color: darkgray;
+            border-radius: 2px 2px 2px 0px;
+            background-color: #fcfafa;
+            border-radius: 2%;
+        }
+
+        .article-recent:hover {
+
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            transition-duration: 1s;
+            color: black;
+            transform: scale3d(1.009, 1.009, 1.009);
+
+        }
+
+        .article-recent-main {
+            order: 2;
+            width: 100%;
+
+        }
+
+        .article-recent-secondary {
+            order: 1;
+        }
+
+        .sidebar-widget {
+            border: 10px solid #efefef;
+            margin-bottom: 2em;
+            padding: 1em;
+        }
+
+        .widget-body:hover {
+            transform: scale3d(1.2, 1.2, 1.2);
+            transition-duration: 1s;
+        }
+
+
+
+        .widget-recent-post-title {
+            font-size: 1rem;
+        }
+
+        .widget-recent-post {
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid #707070;
+            margin-bottom: 1em;
+        }
+
+        .widget-recent-post:last-child {
+            border: 0;
+            margin: 0;
+        }
+
+        .widget-image {
+            order: -1;
+            margin-bottom: .5em;
+        }
+
+        .article-body {
+            padding-left: 5%;
+            padding-right: 2%;
+            text-justify:auto;
+            text-align-last: justify;
+            border-left: 6px solid rgb(119, 116, 116);
+            background-color: #fcfafa;
+
+
+        }
+        .hoverTable{
+            width: 100%;
+            border-collapse: collapse;
+            margin-left: 2%;
+        }
+        .hoverTable tr:hover{
+            background-color: #fcecd0;
+        }
+        #parties {
+         margin-left: 2%;
+         margin-right: 2%;
+         border-collapse: collapse;
+         width: 96%;
+        }
+
+        #parties td,#parties th {
+           border: 2px solid rgb(255, 249, 249);
+           padding: 8px;
+        }
+        
+        #parties td:nth-child(even){background-color: #ffefd7;}
+
+        @media (min-width: 675px) {
+
+            .container-nav,
+            .container-flex {
+                flex-direction: row;
+            }
+
+            .container-nav {
+                align-items: center;
+            }
+
+            main {
+                width: 70%;
+            }
+
+            aside {
+                width: 25%;
+                min-width: 200px;
+                margin-left: 1em;
+            }
+
+            nav ul {
+                flex-direction: row;
+            }
+
+            nav li {
+                margin-left: 2em;
+            }
+
+
+            .article-recent {
+                flex-direction: row;
+                justify-content: space-between;
+
+            }
+
+            .article-recent-main {
+                width: 95%;
+                text-align: justify;
+            }
+
+            .article-recent-secondary {
+                width: 30%;
+            }
+
+            .article-title {
+                order: 99;
+            }
+
+            .article-image {
+                width: 100%;
+                min-height: 200px;
+                object-fit: cover;
+                border-radius: 2% 2% 0% 0%;
+            }
+
+
+            .article-featured {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .article-image {
+                order: -2;
+            }
+
+            .article-info {
+                order: -1;
+            }
+
+            .article-title {
+                order: 0;
+            }
+
+        }
+    .buttonsss{
+        width:20%;
+        padding:1%;
+        border-radius:0px 20px 20px 20px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  
+
+    }
+    .scrollable-menu {
+    height: auto;
+    max-height: 300px;
+    overflow-x: hidden;
+}
+    </style>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+    
+    <title>RSvotes | Delhi </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    </head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">RSvotes</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="aboutparties.html">About parties</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="vote.php">Vote Now!</a></li>
+                    </li>
+                        
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+
+    <header>
+        <div class="container container-nav">
+            <div class="site-title" style="text-align: center;">
+                <h1>Delhi Election</h1>
+                <p class="subtitle" ><h3>Results & Updates<h3</p>
+            </div>
+            
+            <nav>
+
+                <ul>
+                    <li><a href="aboutparties.html">National<br> Parties</a></li>
+                   <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false" class="current-page">
+                        State Parties
+                    </a>
+                    <ul class="dropdown-menu scrollable-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="andhrapradesh.html">Andhra Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="arunachalpradhesh.html">Arunachal Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="assam.html">Assam Election</a></li>
+                        <li><a class="dropdown-item" href="bihar.html">Bihar Election</a></li>
+                        <li><a class="dropdown-item" href="chhattisgarh.html">Chhattisgarh Election</a></li>
+                        <li><a class="dropdown-item" href="delhi.html">Delhi Election</a></li>
+                        <li><a class="dropdown-item" href="Goa.html">Goa Election</a></li>
+                        <li><a class="dropdown-item" href="gujarat.html">Gujarat Election</a></li>
+                        <li><a class="dropdown-item" href="haryana.html">Haryana Election</a></li>
+                        <li><a class="dropdown-item" href="himachal.html">Himachal Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="jharkhand.html">Jharkhand Election</a></li>
+                        <li><a class="dropdown-item" href="karnataka.html">Karnataka Election</a></li>
+                        <li><a class="dropdown-item" href="kerala.html">Kerala Election</a></li>
+                        <li><a class="dropdown-item" href="madhyapradesh.html">Madhya Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="maharashtra.html">Maharashtra Election</a></li>
+                        <li><a class="dropdown-item" href="manipur.html">Manipur Election</a></li>
+                        <li><a class="dropdown-item" href="meghalaya.html">Meghalaya Election</a></li>
+                        <li><a class="dropdown-item" href="mizoram.html">Mizoram Election</a></li>
+                        <li><a class="dropdown-item" href="nagaland.html">Nagaland Election</a></li>
+                        <li><a class="dropdown-item" href="orissa.html">Odisha Election</a></li>
+                        <li><a class="dropdown-item" href="punjab.html">Punjab Election</a></li>
+                        <li><a class="dropdown-item" href="rajasthan.html">Rajasthan Election</a></li>
+                        <li><a class="dropdown-item" href="sikkim.html">Sikkim Election</a></li>
+                        <li><a class="dropdown-item" href="tamilnadu.html">Tamil Nadu Election</a></li>
+                        <li><a class="dropdown-item" href="telangana.html">Telangana Election</a></li>
+                        <li><a class="dropdown-item" href="tripura.html">Tripura Election</a></li>
+                        <li><a class="dropdown-item" href="uttar pradesh.html">Uttar Pradesh Election</a></li>
+                        <li><a class="dropdown-item" href="uttarakhand.html">Uttarakhand Election</a></li>
+                        <li><a class="dropdown-item" href="west bengal.html">West Bengal Election</a></li>
+                    </ul>
+                </li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container container-flex">
+
+        <main role="main">
+            <article class="article-featured" id="p4">
+                <h2 class="article-title"><mark>Recognised Parties in Delhi </mark></h2>
+                
+             <p class="article-body"><i>
+                <table  id="parties">
+                    <tr>
+                        <th>Name:</th>
+                        <td><a href="https://en.wikipedia.org/wiki/Aam_Aadmi_Party" style="text-decoration: none; color: #f59241;">Aam Aadmi Party</a></td>
+                    </tr>
+
+                    </tr>
+                    <tr>
+                      <th>Abbrivation:</th>
+                      <td>AAP</td>
+                    </tr>
+                    <tr>
+                      <th>Foundation year:</th>
+                      <td>2012</td>
+                    </tr>
+                    <tr>
+                        <th>Current Leader(s):</th>
+                        <td><a href="https://en.wikipedia.org/wiki/Arvind_Kejriwal" style="text-decoration: none; color: #f59241;">Arvind Kejriwal</a></td>
+                    </tr>
+                    <tr>
+                        <th>Symbol:</th>
+                        <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/AAP_Symbol.png/150px-AAP_Symbol.png"></td>
+                    </tr>
+                    
+                  </table> 
+                  
+             </i></p></a>
+             
+                <p id="coml" class="rc"><i></i></p>
+            </article>
+
+        
+            <article class="article-featured">
+                <h2 class="article-title"><mark>About Delhi Elections</mark></h2>
+              <p class="article-body"><i>The first elections for the Delhi Legislative Assembly were held in 1993 in which Bharatiya
+                   Janata Party (BJP) emerged victorious. The last assembly elections were held in Delhi in 2013 in which Aam Aadmi 
+                   Party won as many as 28 seats and formed its government with outside support of Indian National Congress (INC). 
+                   In the 2013 Assembly elections, there were 11,753 polling stations with 11.9 million eligible voters out of which 
+                   6.6 million were men and 5.3 million were women including 405,000 first time voters. Presently,
+                   Delhi is under President's rule ever since former chief minister Arvind Kejriwal resigned in February 2014.
+              </i></p></a>
+
+                <a href="https://www.elections.in/delhi/" class="article-read-more">CONTINUE READING</a>
+                
+                <p id="coml" class="rc"><i></i></p>
+            </article>
+             <!-- Facts table-->
+            <article class="article-featured" id="p1">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark>Quick facts for Delhi Elections</mark></h2>
+            
+                <a href="#" style="text-decoration: none;  color: rgb(80, 79, 79);"> <p class="article-body">
+                <table class="hoverTable" style="text-align:left;">
+                    <tr>
+                      <td width="330">Parliamentary Constituencies</td>
+                      <td>7</td>
+                    </tr>
+                    <tr>
+                      <td>Assembly Constituencies</td>
+                      <td>70</td>
+                    </tr>
+                    <tr>
+                      <td>Ruling Party</td>
+                      <td>Aam Aadmi Party</td>
+                    </tr>
+                    <tr>
+                      <td>Opposition Party</td>
+                      <td>Bharatiya Janata Party</td>
+                    </tr>
+                    <tr>
+                        <td>Cheif Minister</td>
+                        <td>Arvind Kejriwal</td>
+                    </tr>
+                    <tr>
+                        <td>Governor</td>
+                        <td>Anil Baijal</td>
+                    </tr>
+                    <tr>
+                        <td>Chief Electoral Officer</td>
+                        <td>Dr Ranbir Singh</td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>Old St. Stephen College Building, Kashmere Gate, Delhi-110006</td>
+                    </tr>
+            
+                  </table></p></a>
+                </div>  
+            </article>
+
+
+            <article class="article-featured" id="p2">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark>Delhi Legislative Assembly (Vidhan Sabha) Elections 2020 Summary</mark></h2>
+                    <p class="article-body"><i>
+                        Delhi is a state in India having a Legislative Assembly and it is also a union territory. There are seventy 
+                        constituencies in the Delhi Legislative Assembly. In the Delhi Election 2020, about 1.46 Crore eligible voters 
+                        decided the fate of the candidates. There was a three way fight amongst AAP, BJP, and INC. The Aam Aadmi Party 
+                        has won the Delhi Assembly Election 2020 by securing 62 seats out of 70 i. e. 5 less than the previous election. 
+                        BJP had a gain of 5 seats than previous having won 8 seats in the Delhi Election Result 2020.<br>
+                        <b>The Result:</b>
+                        Arvind Kejriwal will be sworn in as the chief minister of Delhi for the third time. BJP, on the other hand,
+                         could manage to bag 8 seats for the Delhi Election 2020. The Congress didn't open the account in the assembly 
+                         this year, too. Having the same performance in the previous election, the Indian National Congress is considered 
+                         perished in Delhi. The previous sitting MLA of BJP, Jagdish Pradhan could not win the election in 2020 while the 
+                         other two sitting MLAs have been re-elected. To recall, the Aam Aadmi Party had won 67 seats in the Delhi Election 
+                         2015 and the BJP had won 3 seats.
+
+
+                    </i></p>
+                    <a href="https://www.elections.in/delhi/assembly-constituencies/2020-election-results.html"
+                        class="article-read-more">CONTINUE READING</a>
+                </div>
+
+            </article>
+
+            <article class="article-featured" id="p3">
+                <div class="article-recent-main">
+                    <h2 class="article-title"><mark>Delhi Lok Sabha Election 2019 Summary</mark></h2>
+                    <p class="article-body"><i>
+                        Delhi is a union territory of India having its own legislative assembly and lieutenant governor.
+                         Delhi has 7 Lok Sabha constituencies. Voting for these constituencies was scheduled on May 12, 2019. 
+                         1,37,04,356 eligible voters decided the face of candidates amongst various political parties. 
+                         The prominent parties to participate in the election were AAP, BJP, and INC. 
+                         Some of the key candidates for the Lok Sabha election 2019 from Delhi were Manoj Tiwari, Harsh Vardhan, 
+                         and Meenakshi Lekhi relative to BJP; Sheila Dikshit,
+                         Ajay Maken, and Vijender Singh from INC; Pankaj Gupta, Dilip Pandey, and Raghav Chadha from AAP.
+
+
+                    </i></p>
+                    <a href="https://www.elections.in/delhi/" class="article-read-more">CONTINUE READING</a>
+                </div>
+            </article>
+
+        </main>
+
+        <aside class="sidebar">
+
+            <div class="sidebar-widget">
+                <h2 class="widget-title">About Delhi   </h2>
+                <img src="data:image/jpeg;base64,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" alt="" class="widget-image">
+                <p class="widget-body rc"><p>
+                    Delhi, India’s capital territory, is a massive metropolitan area in the country’s north. In Old Delhi, a neighborhood dating to the 1600s, stands
+                     the imposing Mughal-era Red Fort, a symbol of India, and the sprawling Jama Masjid mosque, whose courtyard accommodates 25,000 people.<br>
+                    <b>Area:</b> 1,484 km²<br>
+                    <b>Chief minister:</b>Arvind Kejriwal<br>
+                    <b>Population:</b>1.9 crores (2012)
+
+
+            </div>
+            <!--GO TO CONTANIER-->
+            <div class="sidebar-widget">
+                <h2 class="widget-title">Go to...</h2>
+                <div class="widget-recent-post">
+                    <a href="#p4" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Recognised Parties in Delhi </h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="#p1" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Quick facts for Delhi Elections</h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="#p2" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Delhi Legislative Assembly (Vidhan Sabha) Elections 2020 Summary</h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="#p3" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Delhi Lok Sabha Election 2019 Summary</h3>
+                    </a>
+                </div>
+
+            </div>
+            <!--Third aside-->
+            <div class="sidebar-widget">
+                <h2 class="widget-title">2020 Delhi Legislative Assembly Elections</h2>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/de/2020DelhiLegislativeAssemblyresult.png" alt="" class="widget-image">    
+            </div>
+            
+            <!--another container-->
+            <div class="sidebar-widget"><a href="https://www.elections.in/delhi/polling-stations/" style="text-decoration: none; color: rgb(16, 33, 90);">
+                <h2 class="widget-title">DELHI POLLING BOOTHS</h2></a>
+
+                <div class="widget-recent-post">
+                    <a href="https://www.elections.in/delhi/polling-stations/narela.html" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Narela</h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="https://www.elections.in/delhi/polling-stations/new-delhi.html" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">New Delhi</h3>
+                    </a>
+                </div>
+
+                <div class="widget-recent-post">
+                    <a href="https://www.elections.in/delhi/polling-stations/karol-bagh.html" style="text-decoration: none; scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Karol Bagh</h3>
+                    </a>
+                </div>
+                <div class="widget-recent-post">
+                    <a href="https://www.elections.in/delhi/polling-stations/mehrauli.html" style="text-decoration: none;   scroll-behavior: smooth;">
+                        <h3 class="widget-recent-post-title">Mehrauli</h3>
+                    </a>
+                </div>
+            </div>
+        </aside>
+    </div>
+    <script>
+        function myFunction() {
+            var person = prompt("Comment as", "Roshini Chavan");
+            if (person != null) {
+                var com = document.getElementById("myText").value;
+                var today = new Date();
+                document.getElementById("coml").innerHTML = "<b>" + "Comment posted: <br>" + person + "</b>" + " " + com + "<br>" + "<div class='rc article-body' style='opacity:50%; border:none;padding-left:3%'>" + today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + ',' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds(); "</div>";
+
+                var com = document.getElementById("just").innerHTML = ""
+                document.getElementById("num").innerHTML = "4";
+
+            }
+        }
+    </script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=4ewHTtLY"></script>
+</body>
+
+</html>
